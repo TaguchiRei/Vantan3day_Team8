@@ -12,7 +12,7 @@ public class SEDatabase : ScriptableObject
         var se = _sounds.FirstOrDefault(x => x.Type == type).Clip;
         if (se == null)
         {
-            Debug.LogError($"[SEDatabase] {type} SE がデータベースに存在しません");
+            Debug.LogError($"[SEDatabase] {type} SE がデータベースに存在しません", this);
         }
         return se;
     }
