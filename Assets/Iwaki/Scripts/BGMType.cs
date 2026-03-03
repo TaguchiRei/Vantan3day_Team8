@@ -2,5 +2,7 @@ public enum BGMType
 {
     Title,
     InGame,
-    Result
+    ResultGood,
+    ResultNormal,
+    ResultBad
 }
