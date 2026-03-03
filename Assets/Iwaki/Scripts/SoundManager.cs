@@ -48,8 +48,6 @@ public class SoundManager : MonoBehaviour
 
     private void Play(BGMType type)
     {
-        Debug.Log($"ここで音が鳴る{type}");
-        return;
         if (_bgmDatabase == null)
         {
             Debug.LogError("[SoundManager] BGM Databaseが存在しません", this);
@@ -63,8 +61,6 @@ public class SoundManager : MonoBehaviour
 
     private void Play(SEType type)
     {
-        Debug.Log($"ここで音が鳴る{type}");
-        return;
         if (_seDatabase == null)
         {
             Debug.LogError("[SoundManager] SE Databaseが存在しません", this);
