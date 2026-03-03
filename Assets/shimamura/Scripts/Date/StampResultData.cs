@@ -1,5 +1,5 @@
 [System.Serializable]
-public class StampRisrutDate
+public class StampResultData
 {
     public HankoType hankoType;
     public EndingFlag endingFlag;
