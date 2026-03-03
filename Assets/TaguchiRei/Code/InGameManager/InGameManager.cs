@@ -120,14 +120,20 @@ public class InGameManager : MonoBehaviour
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.marriage, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
                 case EndingFlag.Divorce:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.divorce, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
                 case EndingFlag.DevilSummon:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.devil, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
