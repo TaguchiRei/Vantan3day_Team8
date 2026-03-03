@@ -12,21 +12,28 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            if (_instance != null) return _instance;
-            
-            _instance = FindAnyObjectByType<SoundManager>();
-            
             if (_instance == null)
             {
                 Debug.LogError("SoundManager が見つかりません");
             }
-            
             return _instance;
         }
     }
     
     private static SoundManager _instance;
     
+    private void Awake()
+    {
+        // 既に存在したら破棄する
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        DontDestroyOnLoad(gameObject);
+        _instance = this;
+    }
     
     public static void PlayBGM(BGMType type)
     {
