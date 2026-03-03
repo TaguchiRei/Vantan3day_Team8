@@ -30,7 +30,7 @@ public class InGameManager : MonoBehaviour
     {
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
         _stampInstance.PressTheStamp(stamp.Texture);
-        if (_documentData.CorrectStamp == stampType)
+        if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
             _score++;
 
