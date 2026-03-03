@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InGameManager : MonoBehaviour
 {
-	[SerializeField] private int timeLimit;
-	[SerializeField] private Document documentPrefab;
-	[SerializeField] private DocumentDataBase documentDB;
-	[SerializeField] private HankoInstance hankoInstance;
+	[SerializeField] private int _timeLimit;
+	[SerializeField] private Document _documentPrefab;
+	[SerializeField] private DocumentDataBase _documentDB;
+	[SerializeField] private StampInstance _stampInstance;
 
 	private Document document;
 
@@ -18,9 +18,14 @@ public class InGameManager : MonoBehaviour
 
 	private void GenerateDocument()
 	{
-		document = Instantiate(documentPrefab);
-		var data = documentDB.Document[0];
+		document = Instantiate(_documentPrefab);
+		var data = _documentDB.Document[0];
 		document.ShowDoc(data.Image);
+	}
+
+	private void PressTheStamp(HankoType stampType)
+	{
+		_stampInstance.PressTheStamp();
 	}
 
 	private async UniTask BeginCountDown()
