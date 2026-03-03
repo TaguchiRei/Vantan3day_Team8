@@ -4,16 +4,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EndingDatabase _endingDatabase;
-    public static GameManager instance;
+    public static GameManager Instance;
 
     public int ResultScore;
     public EndingType EndingType;
     
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

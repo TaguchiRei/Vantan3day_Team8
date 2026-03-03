@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1054916752}
   - component: {fileID: 1054916751}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: InGameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,11 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff43b4b9d39aacd4fbff8226db8e376c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InGameManager
-  timeLimit: 0
-  documentPrefab: {fileID: 3797772421702381198, guid: d475650437faef84786165640b0bed5c, type: 3}
-  documentDB: {fileID: 0}
-  hankoInstance: {fileID: 0}
-  document: {fileID: 0}
+  _timeLimit: 0
+  _documentPrefab: {fileID: 3797772421702381198, guid: d475650437faef84786165640b0bed5c, type: 3}
+  _documentDB: {fileID: 0}
+  _stampInstance: {fileID: 432377803613157628}
+  _stampDB: {fileID: 0}
 --- !u!4 &1054916752
 Transform:
   m_ObjectHideFlags: 0
@@ -386,13 +386,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7671577940343675939, guid: 68d97d6cf58d4c34f9aaf0b1814da2bd, type: 3}
       propertyPath: m_Name
-      value: HankoObject
+      value: Stamp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68d97d6cf58d4c34f9aaf0b1814da2bd, type: 3}
+--- !u!114 &432377803613157628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6792575501709452912, guid: 68d97d6cf58d4c34f9aaf0b1814da2bd, type: 3}
+  m_PrefabInstance: {fileID: 432377803613157627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6adc88bb335dd44c9425a3fbe7e0ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HankoInstance
 --- !u!1001 &4204817723905271112
 PrefabInstance:
   m_ObjectHideFlags: 0

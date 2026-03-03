@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HankoInstance : MonoBehaviour
+public class StampInstance : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[SerializeField] private Animator _animator;
