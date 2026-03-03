@@ -198,5 +198,6 @@ public class InGameManager : MonoBehaviour
         InputDispatcher.Interface.DisableInput();
         InputRegistration(false);
         GameManager.Instance.SaveResult(_totalScore, type, default);
+        GameManager.Instance.LoadResultScene();
     }
 }
