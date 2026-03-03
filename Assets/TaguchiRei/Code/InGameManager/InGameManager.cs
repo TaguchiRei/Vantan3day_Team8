@@ -4,32 +4,52 @@ using UnityEngine;
 
 public class InGameManager : MonoBehaviour
 {
-	[SerializeField] private int _timeLimit;
-	[SerializeField] private Document _documentPrefab;
-	[SerializeField] private DocumentDataBase _documentDB;
-	[SerializeField] private StampInstance _stampInstance;
+    [SerializeField] private int _timeLimit;
+    [SerializeField] private Document _documentPrefab;
+    [SerializeField] private DocumentDataBase _documentDB;
+    [SerializeField] private StampInstance _stampInstance;
+    [SerializeField] private StampDataBase _stampDB;
 
-	private Document document;
+    private Document _document;
+    private DocumentData _documentData;
 
-	private void Start()
-	{
+    private int _score = 0;
 
-	}
+    private void Start()
+    {
+    }
 
-	private void GenerateDocument()
-	{
-		document = Instantiate(_documentPrefab);
-		var data = _documentDB.Document[0];
-		document.ShowDoc(data.Image);
-	}
+    private void GenerateDocument()
+    {
+        _document = Instantiate(_documentPrefab);
+        _documentData = _documentDB.Document[0];
+        _document.ShowDoc(_documentData.Image);
+    }
 
-	private void PressTheStamp(HankoType stampType)
-	{
-		_stampInstance.PressTheStamp();
-	}
+    private void PressTheStamp(StampType stampType)
+    {
+        var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
+        _stampInstance.PressTheStamp(stamp.Texture);
+        if (_documentData.CorrectStamp == stampType)
+        {
+            _score++;
 
-	private async UniTask BeginCountDown()
-	{
-		await UniTask.Delay(3);
-	}
+            switch (_documentData.EndingFlag)
+            {
+                case EndingFlag.Marriage:
+                    break;
+                case EndingFlag.Divorce:
+                    break;
+                case EndingFlag.DevilSummon:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private async UniTask BeginCountDown()
+    {
+        await UniTask.Delay(3);
+    }
 }

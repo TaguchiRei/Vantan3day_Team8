@@ -9,7 +9,7 @@ public class DocumentData
 	public Sprite Image;
 
 	[Header("正解のハンコ")]
-	public HankoType CorrectHanko;
+	public StampType CorrectStamp;
 
 	[Header("エンディングフラグ")]
 	public EndingFlag EndingFlag;

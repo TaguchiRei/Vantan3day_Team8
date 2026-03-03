@@ -1,6 +1,6 @@
 [System.Serializable]
 public class StampResultData
 {
-    public HankoType hankoType;
+    public StampType stampType;
     public EndingFlag endingFlag;
 }
