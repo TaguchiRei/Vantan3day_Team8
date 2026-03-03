@@ -11,11 +11,14 @@ public class Document : MonoBehaviour
 		_sprite.sprite = sprite;
 	}
 
-	public void HideDoc(Sprite hankoSprite)
+	public void HideDoc(Sprite hankoSprite, bool apply)
 	{
-		if (hankoSprite != null)
+		if (apply)
 		{
-			_seal.ShowSeal(hankoSprite);
+			if (!hankoSprite)
+			{
+				_seal.ShowSeal(hankoSprite);
+			}
 		}
 	}
 }
