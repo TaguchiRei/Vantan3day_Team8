@@ -10,10 +10,10 @@ public class HankoInstance : MonoBehaviour
 		_spriteRenderer.enabled = false;
 	}
 
-	public void PressTheStamp(Texture2D hankoTexture)
+	public void PressTheStamp(Sprite hankoSprite)
 	{
 		_spriteRenderer.enabled = true;
-		_spriteRenderer.sprite = _spriteRenderer.sprite;
+		_spriteRenderer.sprite = hankoSprite;
 		_animator.SetTrigger("Stamp");
 	}
 }
