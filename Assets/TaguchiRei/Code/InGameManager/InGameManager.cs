@@ -28,7 +28,7 @@ public class InGameManager : MonoBehaviour
 
     private void PressTheStamp(StampType stampType)
     {
-        var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
+        var stamp = _stampDB.AllStamp.Find(s => s.CorrectType == stampType);
         _stampInstance.PressTheStamp(stamp.Texture);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {

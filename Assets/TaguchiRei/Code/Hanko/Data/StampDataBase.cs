@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Hanko", menuName = "Scriptable Objects/Hanko")]
+[CreateAssetMenu(fileName = "StampDataBase", menuName = "Scriptable Objects/StampDataBase")]
 public class StampDataBase : ScriptableObject
 {
     public List<StampData> AllStamp = new();
@@ -11,7 +11,7 @@ public class StampDataBase : ScriptableObject
 [Serializable]
 public class StampData
 {
-    public StampType Type;
+    public StampType CorrectType;
     public Sprite Texture;
 }
 
