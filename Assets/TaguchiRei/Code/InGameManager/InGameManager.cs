@@ -48,6 +48,7 @@ public class InGameManager : MonoBehaviour
     private void OnDestroy()
     {
         StopCoroutine(_routine);
+        InputDispatcher.Interface.DisableInput();
         InputRegistration(false);
     }
 
@@ -120,14 +121,20 @@ public class InGameManager : MonoBehaviour
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.marriage, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
                 case EndingFlag.Divorce:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.divorce, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
                 case EndingFlag.DevilSummon:
+                    InputRegistration(false);
+                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.devil, stampType);
                     GameManager.Instance.LoadResultScene();
                     return;
@@ -188,6 +195,9 @@ public class InGameManager : MonoBehaviour
             type = EndingType.Good;
         }
 
+        InputDispatcher.Interface.DisableInput();
+        InputRegistration(false);
         GameManager.Instance.SaveResult(_totalScore, type, default);
+        GameManager.Instance.LoadResultScene();
     }
 }
