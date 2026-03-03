@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 
     public int ResultScore;
     public EndingType EndingType;
-    
+
+    private StampType _lastStamp;
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,11 +45,18 @@ public class GameManager : MonoBehaviour
             _ => BGMType.ResultBad
         };
         SoundManager.PlayBGM(bgmType);
+        SceneManager.LoadScene("Result");
     }
 
-    public void SaveResult(int score, EndingType endingType)
+    public void SaveResult(int score, EndingType endingType, StampType lastStamp)
     {
         ResultScore = score;
         EndingType = endingType;
+        _lastStamp = lastStamp;
+    }
+
+    public EndingEntry GetResult()
+    {
+        return _endingDatabase.GetEnding(EndingType);
     }
 }

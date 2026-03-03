@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: BGMDatabase
   m_EditorClassIdentifier: Assembly-CSharp::BGMDatabase
   _sounds:
+  - Type: 0
+    Clip: {fileID: 0}
+  - Type: 1
+    Clip: {fileID: 0}
   - Type: 2
+    Clip: {fileID: 0}
+  - Type: 3
+    Clip: {fileID: 0}
+  - Type: 4
     Clip: {fileID: 0}

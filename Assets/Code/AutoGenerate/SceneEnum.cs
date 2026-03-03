@@ -1,11 +1,14 @@
 ﻿// 自動生成ファイルの為、手動での編集は上書きされます。
 public enum InListSceneName
 {
-    SampleScene,
+    Title,
+    InGame,
+    Result,
 }
 
 public enum OutListSceneName
 {
+    SampleScene,
     InGameScene,
     ShimamuraTest,
     TitleScenes,

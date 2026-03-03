@@ -7,16 +7,17 @@ public class EndingDatabase : ScriptableObject
 {
     [SerializeField] private EndingEntry[] _endings;
 
-    public Texture2D GetEnding(EndingType type)
+    public EndingEntry GetEnding(EndingType type)
     {
-        var ending = _endings.FirstOrDefault(x => x.Type == type).Image;
+        var ending = _endings.FirstOrDefault(x => x.Type == type);
         return ending;
     }
+}
 
-    [Serializable]
-    private struct EndingEntry
-    {
-        public EndingType Type;
-        public Texture2D Image;
-    }
+[Serializable]
+public struct EndingEntry
+{
+    public EndingType Type;
+    public Texture2D Image;
+    public string EndingText;
 }
