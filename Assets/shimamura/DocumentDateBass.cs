@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "DocumentDateBass")]
+[CreateAssetMenu(menuName = "Document/DocumentDateBass")]
 public class DocumentDateBass : ScriptableObject
 {
     public List<DocumentDate> Document = new List<DocumentDate>();
