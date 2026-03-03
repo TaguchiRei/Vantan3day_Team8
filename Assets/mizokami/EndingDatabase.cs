@@ -18,6 +18,6 @@ public class EndingDatabase : ScriptableObject
 public struct EndingEntry
 {
     public EndingType Type;
-    public Texture2D Image;
+    public Sprite Sprite;
     public string EndingText;
 }
