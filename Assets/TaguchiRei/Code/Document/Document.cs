@@ -15,10 +15,17 @@ public class Document : MonoBehaviour
 	{
 		if (apply)
 		{
-			if (!hankoSprite)
-			{
-				_seal.ShowSeal(hankoSprite);
-			}
+			_seal.ShowSeal(hankoSprite);
+			_animator.SetTrigger("Stamp");
 		}
+		else
+		{
+			_animator.SetTrigger("Destruction");
+		}
+	}
+
+	public void DestroyObject()
+	{
+		Destroy(gameObject);
 	}
 }
