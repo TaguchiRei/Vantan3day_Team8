@@ -15,6 +15,14 @@ public class InputDispatcher : MonoBehaviour, IInputDispatcher
         SwitchActionMap(nameof(ActionMaps.Player));
     }
 
+    private void OnDestroy()
+    {
+        _playerInput.actions.Disable();
+        _playerInput.actions = null;
+
+        Interface = null;
+    }
+
     public void ChangeActionRegistrationStart(string actionMap, string actionName,
         Action<InputAction.CallbackContext> action, Registration registration)
     {

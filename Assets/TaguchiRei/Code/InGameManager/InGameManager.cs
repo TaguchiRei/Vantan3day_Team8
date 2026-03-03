@@ -48,6 +48,7 @@ public class InGameManager : MonoBehaviour
     private void OnDestroy()
     {
         StopCoroutine(_routine);
+        InputDispatcher.Interface.DisableInput();
         InputRegistration(false);
     }
 
@@ -194,6 +195,8 @@ public class InGameManager : MonoBehaviour
             type = EndingType.Good;
         }
 
+        InputDispatcher.Interface.DisableInput();
+        InputRegistration(false);
         GameManager.Instance.SaveResult(_totalScore, type, default);
     }
 }
