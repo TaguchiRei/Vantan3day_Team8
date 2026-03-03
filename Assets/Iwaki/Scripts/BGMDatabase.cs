@@ -12,7 +12,7 @@ public class BGMDatabase : ScriptableObject
         var bgm = _sounds.FirstOrDefault(x => x.Type == type).Clip;
         if (bgm == null)
         {
-            Debug.LogError($"[BGMDatabase] {type} BGM がデータベースに存在しません");
+            Debug.LogError($"[BGMDatabase] {type} BGM がデータベースに存在しません", this);
         }
         return bgm;
     }
