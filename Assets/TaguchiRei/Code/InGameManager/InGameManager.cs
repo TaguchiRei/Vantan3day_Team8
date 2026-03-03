@@ -37,13 +37,13 @@ public class InGameManager : MonoBehaviour
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
-                    GameManagement.Instance.SaveResult(_score, EndingType.marriage);
+                    GameManager.Instance.SaveResult(_score, EndingType.marriage);
                     break;
                 case EndingFlag.Divorce:
-                    GameManagement.Instance.SaveResult(_score, EndingType.divorce);
+                    GameManager.Instance.SaveResult(_score, EndingType.divorce);
                     break;
                 case EndingFlag.DevilSummon:
-                    GameManagement.Instance.SaveResult(_score, EndingType.devil);
+                    GameManager.Instance.SaveResult(_score, EndingType.devil);
                     break;
                 default:
                     break;
