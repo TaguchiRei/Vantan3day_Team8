@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SealImpression : MonoBehaviour
 {
-	[SerializeField] SpriteRenderer spriteRenderer;
+	[SerializeField] SpriteRenderer _spriteRenderer;
 	public void ShowSeal(Sprite sprite)
 	{
-		spriteRenderer.sprite = sprite;
+		_spriteRenderer.sprite = sprite;
 	}
 }

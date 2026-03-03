@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputDispatcher : MonoBehaviour, IInputDispatcher
 {
+    public static IInputDispatcher Interface;
     private PlayerInput _playerInput;
 
     private void Awake()
     {
+        Interface = this;
         _playerInput = GetComponent<PlayerInput>();
         SwitchActionMap(nameof(ActionMaps.Player));
     }
@@ -93,11 +95,11 @@ public class InputDispatcher : MonoBehaviour, IInputDispatcher
             inputAction.canceled -= action;
         }
     }
-    
+
     private InputAction GetAction(string actionMap, string actionName)
     {
         if (_playerInput == null) return null;
-        
+
         var map = _playerInput.actions.FindActionMap(actionMap);
         if (map == null)
         {
@@ -124,5 +126,15 @@ public class InputDispatcher : MonoBehaviour, IInputDispatcher
         if (_playerInput == null) return 0;
         Enum.TryParse<ActionMaps>(_playerInput.currentActionMap.name, out var parseMap);
         return (int)parseMap;
+    }
+
+    public void EnableInput()
+    {
+        _playerInput.actions.Enable();
+    }
+
+    public void DisableInput()
+    {
+        _playerInput.actions.Disable();
     }
 }

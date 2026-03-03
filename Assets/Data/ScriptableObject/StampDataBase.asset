@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: StampDataBase
   m_EditorClassIdentifier: Assembly-CSharp::StampDataBase
   AllStamp:
-  - CorrectType: 0
-    Texture: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  - Type: 0
+    Texture: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  - Type: 1
+    Texture: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}

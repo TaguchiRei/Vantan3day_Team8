@@ -3,19 +3,19 @@ public enum ActionMaps
 {
     Player = 0,
     UI = 1,
+    InGame = 2,
 }
 
 public enum PlayerActions
 {
     Move = 0,
-    Look = 1,
-    Attack = 2,
-    Interact = 3,
-    Crouch = 4,
-    Jump = 5,
-    Previous = 6,
-    Next = 7,
-    Sprint = 8,
+    Attack = 1,
+    Interact = 2,
+    Crouch = 3,
+    Jump = 4,
+    Previous = 5,
+    Next = 6,
+    Sprint = 7,
 }
 
 public enum UIActions
@@ -30,5 +30,12 @@ public enum UIActions
     ScrollWheel = 7,
     TrackedDevicePosition = 8,
     TrackedDeviceOrientation = 9,
+}
+
+public enum InGameActions
+{
+    PersonalSeal = 0,
+    CompanySeal = 1,
+    Pass = 2,
 }
 

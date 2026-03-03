@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource _bgmAudioSource;
     [SerializeField] private AudioSource _seAudioSource;
-    
+
     private static SoundManager Instance
     {
         get
@@ -16,12 +16,13 @@ public class SoundManager : MonoBehaviour
             {
                 Debug.LogError("SoundManager が見つかりません");
             }
+
             return _instance;
         }
     }
-    
+
     private static SoundManager _instance;
-    
+
     private void Awake()
     {
         // 既に存在したら破棄する
@@ -30,11 +31,11 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         DontDestroyOnLoad(gameObject);
         _instance = this;
     }
-    
+
     public static void PlayBGM(BGMType type)
     {
         Instance.Play(type);
@@ -44,15 +45,17 @@ public class SoundManager : MonoBehaviour
     {
         Instance.Play(type);
     }
-    
+
     private void Play(BGMType type)
     {
+        Debug.Log($"ここで音が鳴る{type}");
+        return;
         if (_bgmDatabase == null)
         {
             Debug.LogError("[SoundManager] BGM Databaseが存在しません", this);
             return;
         }
-        
+
         var bgm = _bgmDatabase.GetBGM(type);
         _bgmAudioSource.clip = bgm;
         _bgmAudioSource.Play();
@@ -60,12 +63,14 @@ public class SoundManager : MonoBehaviour
 
     private void Play(SEType type)
     {
+        Debug.Log($"ここで音が鳴る{type}");
+        return;
         if (_seDatabase == null)
         {
             Debug.LogError("[SoundManager] SE Databaseが存在しません", this);
             return;
         }
-        
+
         var se = _seDatabase.GetSE(type);
         _seAudioSource.PlayOneShot(se);
     }

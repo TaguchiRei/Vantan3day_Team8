@@ -11,8 +11,9 @@ public class StampDataBase : ScriptableObject
 [Serializable]
 public class StampData
 {
-    public StampType CorrectType;
-    public Sprite Texture;
+    public StampType Type;
+    public Sprite MainSprite;
+    public Sprite ShadowSprite;
 }
 
 public enum StampType

@@ -65,6 +65,16 @@ public interface IInputDispatcher
     /// </summary>
     /// <returns>ActionMapにパースする</returns>
     public int GetActiveActionMap();
+
+    /// <summary>
+    /// 入力を有効化する
+    /// </summary>
+    public void EnableInput();
+
+    /// <summary>
+    /// 入力を無効化する
+    /// </summary>
+    public void DisableInput();
 }
 
 public enum Registration
