@@ -8,10 +8,9 @@ public class DocumentData
 	[Header("書類の見た目")]
 	public Sprite Image;
 
-	[Header("ハンコとの書類の対応用")]
-	public List<StampResultData> stampEnding = new();
-
+	[Header("正解のハンコ")]
 	public HankoType CorrectHanko;
 
+	[Header("エンディングフラグ")]
 	public EndingFlag EndingFlag;
 }

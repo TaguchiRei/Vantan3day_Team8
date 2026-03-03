@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class InGameManager : MonoBehaviour
@@ -6,6 +7,10 @@ public class InGameManager : MonoBehaviour
 	[SerializeField] private int timeLimit;
 	[SerializeField] private Document documentPrefab;
 	[SerializeField] private DocumentDataBase documentDB;
+	[SerializeField] private HankoInstance hankoInstance;
+
+	private Document document;
+
 	private void Start()
 	{
 
@@ -13,9 +18,9 @@ public class InGameManager : MonoBehaviour
 
 	private void GenerateDocument()
 	{
-		var documentInstance = Instantiate(documentPrefab);
+		document = Instantiate(documentPrefab);
 		var data = documentDB.Document[0];
-		documentInstance.ShowDoc(data.Image);
+		document.ShowDoc(data.Image);
 	}
 
 	private async UniTask BeginCountDown()
