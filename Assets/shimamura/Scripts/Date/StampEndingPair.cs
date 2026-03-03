@@ -1,4 +1,4 @@
 public enum EndingFlag
 {
-    //エンディングのフラグをここに
+   None,
 }
