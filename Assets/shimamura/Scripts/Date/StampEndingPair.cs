@@ -1,4 +1,5 @@
 public enum EndingFlag
 {
-    //エンディングのフラグをここに
+	//エンディングのフラグをここに
+	Nane,
 }
