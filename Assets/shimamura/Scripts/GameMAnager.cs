@@ -1,11 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private EndingDatabase _endingDatabase;
     public static GameManager instance;
 
+    public int ResultScore;
+    public EndingType EndingType;
+    
     private void Awake()
     {
         if (instance == null)
@@ -19,17 +22,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(BGMType bgmType)
+    public void LoadTitleScene()
     {
-        SceneManager.LoadScene(bgmType.ToString());
+        SceneManager.LoadScene("Title");
+        SoundManager.PlayBGM(BGMType.Title);
+    }
+
+    public void LoadInGameScene()
+    {
+        SceneManager.LoadScene("InGame");
+        SoundManager.PlayBGM(BGMType.InGame);
+    }
+
+    public void LoadResultScene()
+    {
+        var bgmType = EndingType switch
+        {
+            EndingType.Good => BGMType.ResultGood,
+            EndingType.Normal => BGMType.ResultNormal,
+            _ => BGMType.ResultBad
+        };
         SoundManager.PlayBGM(bgmType);
     }
 
-    private void OnSceneLoad(Scene scene)
+    public void SaveResult(int score, EndingType endingType)
     {
-        if (Enum.TryParse(scene.name, out BGMType bgmType))
-        {
-            SoundManager.PlayBGM(bgmType);
-        }
+        ResultScore = score;
+        EndingType = endingType;
     }
 }

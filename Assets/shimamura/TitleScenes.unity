@@ -501,8 +501,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: dce329f0defb2824c8bb181bd3a08679, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+      - m_Target: {fileID: 1172332313}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: set_name
         m_Mode: 5
         m_Arguments:
@@ -510,7 +510,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: hankoTestScene
+          m_StringArgument: InGameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &546642727
@@ -824,7 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce329f0defb2824c8bb181bd3a08679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _creditPanel: {fileID: 0}
+  _endingDatabase: {fileID: 0}
+  ResultScore: 0
+  EndingType: 0
 --- !u!4 &1172332314
 Transform:
   m_ObjectHideFlags: 0
@@ -1549,9 +1551,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1172332313}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: hideCredit
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1682,9 +1684,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1172332313}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ShowCredit
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

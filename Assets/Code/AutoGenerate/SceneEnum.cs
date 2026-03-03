@@ -6,6 +6,8 @@ public enum InListSceneName
 
 public enum OutListSceneName
 {
+    InGameScene,
     ShimamuraTest,
+    TitleScenes,
     hankoTestScene,
 }
