@@ -8,7 +8,6 @@ public enum InListSceneName
 
 public enum OutListSceneName
 {
-    SampleScene,
     InGameScene,
     ShimamuraTest,
     TitleScenes,
