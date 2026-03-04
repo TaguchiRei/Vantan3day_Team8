@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EndingDatabase _endingDatabase;
+    [SerializeField] private FadeManager _fadeManager;
     public static GameManager Instance;
 
     public int ResultScore;
@@ -27,31 +28,47 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _ = _fadeManager.FadeOut();
         SoundManager.PlayBGM(BGMType.Title);
+        SceneManager.sceneLoaded += (_, _) => OnSceneLoaded();
+    }
+
+    private void OnSceneLoaded()
+    {
+        _ = _fadeManager.FadeOut();
     }
 
     public void LoadTitleScene()
     {
-        SceneManager.LoadScene("Title");
-        SoundManager.PlayBGM(BGMType.Title);
+        _ = _fadeManager.FadeIn(() =>
+        {
+            SceneManager.LoadScene("Title");
+            SoundManager.PlayBGM(BGMType.Title);
+        });
     }
 
     public void LoadInGameScene()
     {
-        SceneManager.LoadScene("InGame");
-        SoundManager.PlayBGM(BGMType.InGame);
+        _ = _fadeManager.FadeIn(() =>
+        {
+            SceneManager.LoadScene("InGame");
+            SoundManager.PlayBGM(BGMType.InGame);
+        });
     }
 
     public void LoadResultScene()
     {
-        var bgmType = EndingType switch
+        _ = _fadeManager.FadeIn(() =>
         {
-            EndingType.Good => BGMType.ResultGood,
-            EndingType.Normal => BGMType.ResultNormal,
-            _ => BGMType.ResultBad
-        };
-        SoundManager.PlayBGM(bgmType);
-        SceneManager.LoadScene("Result");
+            var bgmType = EndingType switch
+            {
+                EndingType.Good => BGMType.ResultGood,
+                EndingType.Normal => BGMType.ResultNormal,
+                _ => BGMType.ResultBad
+            };
+            SoundManager.PlayBGM(bgmType);
+            SceneManager.LoadScene("Result");
+        });
     }
 
     public void SaveResult(int score, EndingType endingType, StampType lastStamp)
