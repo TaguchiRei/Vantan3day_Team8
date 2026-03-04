@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -26,7 +27,7 @@ public sealed class FadeManager : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public async UniTask FadeOut()
+    public async UniTask FadeOut(CancellationToken token)
     {
         float elapsedTime = 0f;
         if (!fadeImage) return;
