@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResultManager
   _spriteRenderer: {fileID: 1629964994}
   _tmp: {fileID: 475916682}
-  _scoreText: {fileID: 0}
+  _scoreText: {fileID: 178006979}
 --- !u!4 &1629964993
 Transform:
   m_ObjectHideFlags: 0
