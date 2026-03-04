@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class InGameManager : MonoBehaviour
 {
@@ -32,6 +34,9 @@ public class InGameManager : MonoBehaviour
     private int _totalScore = 0;
     private float _timeCount = 0;
     private bool _miss;
+    
+    public event Action<int> OnScoreChanged;
+    public int TimeLimit => _timeLimit;
 
     private void Start()
     {
@@ -145,6 +150,7 @@ public class InGameManager : MonoBehaviour
                     {
                         _totalScore += _bonus;
                     }
+                    OnScoreChanged?.Invoke(_totalScore);
 
                     break;
             }
