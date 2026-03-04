@@ -1085,6 +1085,10 @@ PrefabInstance:
       propertyPath: _inGameManager
       value: 
       objectReference: {fileID: 1313887265}
+    - target: {fileID: 4049243309658645906, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: _inGameManager
+      value: 
+      objectReference: {fileID: 1313887265}
     - target: {fileID: 5430609474253480936, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

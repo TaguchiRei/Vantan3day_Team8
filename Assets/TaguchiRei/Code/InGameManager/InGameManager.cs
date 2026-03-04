@@ -187,6 +187,7 @@ public class InGameManager : MonoBehaviour
     /// </summary>
     private void PathDocument()
     {
+        if (_document == null) return;
         SoundManager.PlaySE(SEType.DocumentDispose);
 
         _document.HideDoc(null, false);
