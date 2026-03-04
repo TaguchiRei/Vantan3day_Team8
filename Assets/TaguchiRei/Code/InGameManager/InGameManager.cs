@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private NPCPhotoDatabase _npcPhotoDB;
     [SerializeField] private StampDataBase _stampDB;
     [SerializeField] private CharacterAnimator _characterAnimator;
+    [SerializeField] private InGameTextAnimator _inGameTextAnimator;
     [SerializeField] private Bundle _startObject;
 
     [Header("GameSetting")] [SerializeField, Min(0)]
@@ -39,10 +41,14 @@ public class InGameManager : MonoBehaviour
     public event Action<int> OnScoreChanged;
     public int TimeLimit => _timeLimit;
 
-    private void Start()
+    private IEnumerator Start()
     {
         NowTime = TimeLimit;
         _startObject.PlayStartAction += PlayStart;
+
+        SoundManager.PlaySE(SEType.InGameCountDown);
+        yield return _inGameTextAnimator.Begin().ToCoroutine();
+        SoundManager.PlaySE(SEType.InGameBegin);
         _startObject.Animator.SetTrigger("Start");
         _routine = StartCoroutine(InGameTimer());
     }
@@ -121,6 +127,8 @@ public class InGameManager : MonoBehaviour
         {
             _document.SetPhoto(_npcPhotoDB.GetRandomNPCPhoto());
         }
+        
+        SoundManager.PlaySE(SEType.DocumentMove);
     }
 
     /// <summary>
@@ -224,6 +232,8 @@ public class InGameManager : MonoBehaviour
         InputDispatcher.Interface.DisableInput();
         InputRegistration(false);
         GameManager.Instance.SaveResult(_totalScore, type, default);
+        SoundManager.PlaySE(SEType.InGameEnd);
+        yield return _inGameTextAnimator.End().ToCoroutine();
         GameManager.Instance.LoadResultScene();
     }
 }
