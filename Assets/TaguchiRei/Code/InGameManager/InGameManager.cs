@@ -48,8 +48,6 @@ public class InGameManager : MonoBehaviour
     private void OnDestroy()
     {
         StopCoroutine(_routine);
-        InputDispatcher.Interface.DisableInput();
-        InputRegistration(false);
     }
 
     private void PlayStart()
@@ -114,9 +112,9 @@ public class InGameManager : MonoBehaviour
     {
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
         _stampInstance.PressTheStamp(stamp.MainSprite);
+        SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
-            SoundManager.PlaySE(SEType.HankoPress);
 
             switch (_documentData.EndingFlag)
             {
