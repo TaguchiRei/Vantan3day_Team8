@@ -10,7 +10,7 @@ public class DocumentTextDatabase : ScriptableObject
     [SerializeField]
     private ResumeDocument[] resumeDocuments;
 
-    public ProposalDocument GetRandomProposalDocument()
+    public IDocument GetRandomProposalDocument()
     {
         if (proposalDocuments.Length == 0)
         {
@@ -22,7 +22,7 @@ public class DocumentTextDatabase : ScriptableObject
         return proposalDocuments[randomIndex];
     }
 
-    public ResumeDocument GetRandomResumeDocument()
+    public IDocument GetRandomResumeDocument()
     {
         if (resumeDocuments.Length == 0)
         {
@@ -36,7 +36,7 @@ public class DocumentTextDatabase : ScriptableObject
 }
 
 [Serializable]
-public struct ResumeDocument
+public struct ResumeDocument : IDocument
 {
     public string UserName => userName;
     public string Gender => gender;
@@ -64,10 +64,15 @@ public struct ResumeDocument
     [TextArea(3, 10)]
     [Header("自己PR")]
     private string selfPromotion;
+
+    public string[] GetText()
+    {
+        return new[] { UserName, Gender, Race, AcademicBackground, SelfPromotion };
+    }
 }
 
 [Serializable]
-public struct ProposalDocument
+public struct ProposalDocument : IDocument
 {
     public string ProposalTitle => proposalTitle;
     public string UserName => userName;
@@ -90,4 +95,14 @@ public struct ProposalDocument
     [SerializeField]
     [Header("費用")]
     private string cost;
+
+    public string[] GetText()
+    {
+        return new[] { ProposalTitle, UserName, Purpose, Cost };
+    }
+}
+
+public interface IDocument
+{
+    string[] GetText();
 }
