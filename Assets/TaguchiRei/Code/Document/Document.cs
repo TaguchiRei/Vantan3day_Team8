@@ -11,16 +11,21 @@ public class Document : MonoBehaviour
     [SerializeField] private SealImpression _seal;
     [SerializeField] private TMP_Text[] _texts;
 
-    public void HideDoc(Sprite hankoSprite, bool apply)
+    public void HideDoc(Sprite hankoSprite, DocumentAnimationType animType)
     {
-        if (apply)
+        switch (animType)
         {
-            _seal.ShowSeal(hankoSprite);
-            _animator.SetTrigger("Stamp");
-        }
-        else
-        {
-            _animator.SetTrigger("Destruction");
+            case DocumentAnimationType.SpecialEnd:
+                _seal.ShowSeal(hankoSprite);
+                _animator.SetTrigger("Special");
+                break;
+            case DocumentAnimationType.Stamp:
+                _seal.ShowSeal(hankoSprite);
+                _animator.SetTrigger("Stamp");
+                break;
+            case DocumentAnimationType.Destruction:
+                _animator.SetTrigger("Destruction");
+                break;
         }
     }
     
@@ -50,4 +55,11 @@ public class Document : MonoBehaviour
     {
         Destroy(gameObject);
     }
+}
+
+public enum DocumentAnimationType
+{
+    SpecialEnd,
+    Stamp,
+    Destruction
 }

@@ -1,9 +1,8 @@
-using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FadeManager : MonoBehaviour
+public sealed class FadeManager : MonoBehaviour
 {
     [SerializeField] private float fadeDuration = 0.5f;
 
@@ -42,6 +41,10 @@ public class FadeManager : MonoBehaviour
             }
 
             await UniTask.Yield();
+            if (token.IsCancellationRequested)
+            {
+                break;
+            }
         }
 
         await UniTask.Yield();
