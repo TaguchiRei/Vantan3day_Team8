@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EndingDatabase _endingDatabase;
+    [SerializeField] private FadeManager _fadeManager;
     public static GameManager Instance;
 
     public int ResultScore;
@@ -23,35 +24,51 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
     {
+        _ = _fadeManager.FadeOut();
         SoundManager.PlayBGM(BGMType.Title);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        _ = _fadeManager.FadeOut();
     }
 
     public void LoadTitleScene()
     {
-        SceneManager.LoadScene("Title");
-        SoundManager.PlayBGM(BGMType.Title);
+        _ = _fadeManager.FadeIn(() =>
+        {
+            SoundManager.PlayBGM(BGMType.Title);
+            SceneManager.LoadScene("Title");
+        });
     }
 
     public void LoadInGameScene()
     {
-        SceneManager.LoadScene("InGame");
-        SoundManager.PlayBGM(BGMType.InGame);
+        _ = _fadeManager.FadeIn(() =>
+        {
+            SoundManager.PlayBGM(BGMType.InGame);
+            SceneManager.LoadScene("InGame");
+        });
     }
 
     public void LoadResultScene()
     {
-        var bgmType = EndingType switch
+        _ = _fadeManager.FadeIn(() =>
         {
-            EndingType.Good => BGMType.ResultGood,
-            EndingType.Normal => BGMType.ResultNormal,
-            _ => BGMType.ResultBad
-        };
-        SoundManager.PlayBGM(bgmType);
-        SceneManager.LoadScene("Result");
+            SceneManager.LoadScene("Result");
+            var bgmType = EndingType switch
+            {
+                EndingType.Good => BGMType.ResultGood,
+                EndingType.Normal => BGMType.ResultNormal,
+                _ => BGMType.ResultBad
+            };
+            SoundManager.PlayBGM(bgmType);
+        });
     }
 
     public void SaveResult(int score, EndingType endingType, StampType lastStamp)
