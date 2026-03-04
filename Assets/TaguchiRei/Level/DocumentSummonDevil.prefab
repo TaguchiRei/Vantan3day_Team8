@@ -84,12 +84,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5003101304274230663, guid: ea5e333bace822c4ea12120cadffe4e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1855683bcc930a4588989c8dde3b655, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -109,6 +109,7 @@ MonoBehaviour:
   _sprite: {fileID: 2321790282944556069}
   _animator: {fileID: 52480533567822578}
   _seal: {fileID: 6002458372068314862}
+  _texts: []
 --- !u!95 &52480533567822578
 Animator:
   serializedVersion: 7

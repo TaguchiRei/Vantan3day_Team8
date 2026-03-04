@@ -9,6 +9,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private int _timeLimit;
     [SerializeField] private Document _documentPrefab;
     [SerializeField] private DocumentDataBase _documentDB;
+    [SerializeField] private DocumentTextDatabase _documentTextDB;
     [SerializeField] private StampInstance _stampInstance;
     [SerializeField] private StampDataBase _stampDB;
 
@@ -103,8 +104,16 @@ public class InGameManager : MonoBehaviour
     /// </summary>
     private void GenerateDocument()
     {
-        _document = Instantiate(_documentPrefab);
         _documentData = _documentDB.Document[Random.Range(0, _documentDB.Document.Count)];
+        _document = Instantiate(_documentData.Prefab).GetComponent<Document>();
+        
+        var documentText = _documentData.DocumentType switch
+        {
+            DocumentType.Proposal => _documentTextDB.GetRandomProposalDocument().GetText(),
+            DocumentType.Resume => _documentTextDB.GetRandomResumeDocument().GetText(),
+            _ => Array.Empty<string>()
+        };
+        _document.SetText(documentText);
     }
 
     /// <summary>
