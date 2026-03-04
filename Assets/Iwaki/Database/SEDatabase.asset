@@ -14,4 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SEDatabase
   _sounds:
   - Type: 0
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: e6bf3ad6c5dfed54f88069664be8e57c, type: 3}
+  - Type: 1
+    Clip: {fileID: 8300000, guid: ec8c31e0a213a5043a544ef10047c8f6, type: 3}
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 5b7c3b14fafb4e448a205dc8b3148f02, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: ab0110ec58dcf1a4b8d4b61a540a448f, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: b3fb08f92efb634478d9c9857fe19645, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 786ea70d73a18ae4fb0592c76f488de7, type: 3}
+  - Type: 6
+    Clip: {fileID: 8300000, guid: 08156aff2286f394f881420a2d651a3d, type: 3}
+  - Type: 7
+    Clip: {fileID: 8300000, guid: 2cd31cdacbdaf0d41ba263964b7159e8, type: 3}
