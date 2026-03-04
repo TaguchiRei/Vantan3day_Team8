@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,13 +6,20 @@ using UnityEngine.Serialization;
 public class DocumentData
 {
     [FormerlySerializedAs("Image")]
-    [Header("書類の見た目")] public GameObject Prefab;
-    
-    [Header("書類のタイプ")] public DocumentType DocumentType;
+    [Header("書類の見た目")]
+    public GameObject Prefab;
 
-    [Header("正解のハンコ")] public StampType CorrectStamp;
+    [Header("書類が出現する重み付き確率")]
+    public int Weight;
 
-    [Header("エンディングフラグ")] public EndingFlag EndingFlag;
+    [Header("書類のタイプ")]
+    public DocumentType DocumentType;
+
+    [Header("正解のハンコ")]
+    public StampType CorrectStamp;
+
+    [Header("エンディングフラグ")]
+    public EndingFlag EndingFlag;
 }
 
 public enum DocumentType
