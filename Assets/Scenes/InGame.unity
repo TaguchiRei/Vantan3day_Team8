@@ -1509,6 +1509,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1825335316842144941, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825335316842144941, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825335316842144941, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 3822955506519984279, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
       propertyPath: _image
       value: 
