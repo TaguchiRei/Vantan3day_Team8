@@ -147,22 +147,16 @@ public class InGameManager : MonoBehaviour
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.marriage, stampType);
-                    GameManager.Instance.LoadResultScene();
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
                     break;
                 case EndingFlag.Divorce:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.divorce, stampType);
-                    GameManager.Instance.LoadResultScene();
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
                     break;
                 case EndingFlag.DevilSummon:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.devil, stampType);
-                    GameManager.Instance.LoadResultScene();
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
                     break;
                 default:
                     SoundManager.PlaySE(SEType.DocumentCorrect);
@@ -174,20 +168,32 @@ public class InGameManager : MonoBehaviour
 
                     OnScoreChanged?.Invoke(_totalScore);
                     _timeCount = 0;
+                    _document.HideDoc(stamp.ShadowSprite, DocumentAnimationType.Stamp);
+                    GenerateDocument();
                     break;
             }
-
-            _document.HideDoc(stamp.ShadowSprite, true);
         }
         else
         {
             SoundManager.PlaySE(SEType.DocumentMistake);
 
             _totalScore -= _missScore;
-            _document.HideDoc(stamp.ShadowSprite, true);
-        }
+            
+            _document.HideDoc(stamp.ShadowSprite, DocumentAnimationType.Stamp);
 
-        GenerateDocument();
+            GenerateDocument();
+        }
+    }
+
+    private IEnumerator LoadUniqueResult(Sprite stampSprite)
+    {
+        InputRegistration(false);
+        InputDispatcher.Interface.DisableInput();
+        _document.HideDoc(stampSprite, DocumentAnimationType.SpecialEnd);
+        _characterAnimator.GameEnd();
+        const float WAIT_TIME = 1.5f;
+        yield return new WaitForSeconds(WAIT_TIME);
+        GameManager.Instance.LoadResultScene();
     }
 
     /// <summary>
@@ -198,7 +204,7 @@ public class InGameManager : MonoBehaviour
         if (_document == null) return;
         SoundManager.PlaySE(SEType.DocumentDispose);
 
-        _document.HideDoc(null, false);
+        _document.HideDoc(null, DocumentAnimationType.Destruction);
         GenerateDocument();
     }
 
