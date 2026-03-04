@@ -1,46 +1,45 @@
-using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FadeManager : MonoBehaviour
+public sealed class FadeManager : MonoBehaviour
 {
     [SerializeField]
     private float fadeDuration = 0.5f;
 
     [SerializeField]
     private CanvasGroup fadeImage;
-    
-    public async UniTask FadeIn(Action onComplete)
+
+    public async UniTask FadeIn(CancellationToken token = default)
     {
         fadeImage.interactable = true;
         fadeImage.blocksRaycasts = true;
-        float elapsedTime = 0f;
-        var alpha = fadeImage.alpha;
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
-            fadeImage.alpha = alpha;
-            await UniTask.Yield();
-        }
-        await UniTask.Yield();
-        onComplete?.Invoke();
-    }   
-    
-    public async UniTask FadeOut()
+        await Fade(0f, 1f, fadeImage, fadeDuration, token);
+    }
+
+    public async UniTask FadeOut(CancellationToken token = default)
     {
-        float elapsedTime = 0f;
-        var alpha = fadeImage.alpha;
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            alpha = 1f - Mathf.Clamp01(elapsedTime / fadeDuration);
-            fadeImage.alpha = alpha;
-            await UniTask.Yield();
-        }
-        await UniTask.Yield();
+        await Fade(1f, 0f, fadeImage, fadeDuration, token);
         fadeImage.interactable = false;
         fadeImage.blocksRaycasts = false;
+    }
+
+    private static async UniTask Fade(float from, float to, CanvasGroup canvasGroup, float duration,
+        CancellationToken token = default)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            var alpha = Mathf.Lerp(from, to, Mathf.Clamp01(elapsedTime / duration));
+            canvasGroup.alpha = alpha;
+            await UniTask.Yield();
+            if (token.IsCancellationRequested)
+            {
+                break;
+            }
+        }
+
+        await UniTask.Yield();
     }
 }
