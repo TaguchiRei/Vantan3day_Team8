@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int ResultScore;
     public EndingType EndingType;
 
-    private StampType _lastStamp;
+    public StampType LastStamp;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        SoundManager.PlayBGM(BGMType.Title);
     }
 
     public void LoadTitleScene()
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         ResultScore = score;
         EndingType = endingType;
-        _lastStamp = lastStamp;
+        LastStamp = lastStamp;
     }
 
     public EndingEntry GetResult()

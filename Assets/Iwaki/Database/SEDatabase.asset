@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f87e4c00b4ba54aa58cd4df41e2254, type: 3}
   m_Name: SEDatabase
   m_EditorClassIdentifier: Assembly-CSharp::SEDatabase
-  _sounds: []
+  _sounds:
+  - Type: 0
+    Clip: {fileID: 8300000, guid: e53fa096d53919744aefe3c0c64a6bfb, type: 3}
+  - Type: 1
+    Clip: {fileID: 8300000, guid: ec8c31e0a213a5043a544ef10047c8f6, type: 3}
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 5b7c3b14fafb4e448a205dc8b3148f02, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: ab0110ec58dcf1a4b8d4b61a540a448f, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: b3fb08f92efb634478d9c9857fe19645, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 786ea70d73a18ae4fb0592c76f488de7, type: 3}
+  - Type: 6
+    Clip: {fileID: 8300000, guid: 08156aff2286f394f881420a2d651a3d, type: 3}
+  - Type: 7
+    Clip: {fileID: 8300000, guid: 2cd31cdacbdaf0d41ba263964b7159e8, type: 3}
