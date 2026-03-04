@@ -36,6 +36,7 @@ public class ResultManager : MonoBehaviour
 
         _score = GameManager.Instance.ResultScore;
 
+        ResultDatabase.Instance.SaveScore(_score);
         UnityroomApiClient.Instance.SendScore(1, _score, ScoreboardWriteMode.Always);
     }
 
