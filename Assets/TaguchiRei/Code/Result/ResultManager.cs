@@ -16,6 +16,6 @@ public class ResultManager : MonoBehaviour
         _tmp.text = result.EndingText;
         _scoreText.text = "Score : " + score;
 
-        UnityroomApiClient.Instance.SendScore(1, 123.45f, ScoreboardWriteMode.Always);
+        UnityroomApiClient.Instance.SendScore(1, score, ScoreboardWriteMode.Always);
     }
 }
