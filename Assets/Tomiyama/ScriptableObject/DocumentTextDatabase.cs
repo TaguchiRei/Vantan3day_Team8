@@ -15,7 +15,7 @@ public class DocumentTextDatabase : ScriptableObject
         if (proposalDocuments.Length == 0)
         {
             Debug.LogError("[DocumentTextDatabase] 提案書がデータベースに存在しません", this);
-            return null;
+            return new ProposalDocument();
         }
 
         int randomIndex = UnityEngine.Random.Range(0, proposalDocuments.Length);
@@ -27,7 +27,7 @@ public class DocumentTextDatabase : ScriptableObject
         if (resumeDocuments.Length == 0)
         {
             Debug.LogError("[DocumentTextDatabase] 履歴書がデータベースに存在しません", this);
-            return null;
+            return new ResumeDocument();
         }
 
         int randomIndex = UnityEngine.Random.Range(0, resumeDocuments.Length);
@@ -36,7 +36,7 @@ public class DocumentTextDatabase : ScriptableObject
 }
 
 [Serializable]
-public class ResumeDocument
+public struct ResumeDocument
 {
     public string UserName => userName;
     public string Gender => gender;
@@ -67,7 +67,7 @@ public class ResumeDocument
 }
 
 [Serializable]
-public class ProposalDocument
+public struct ProposalDocument
 {
     public string ProposalTitle => proposalTitle;
     public string UserName => userName;
