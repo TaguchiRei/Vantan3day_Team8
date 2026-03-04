@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
 
+#if UNITY_EDITOR
 public class DocumentDatabaseImporterWindow : EditorWindow
 {
     private string resumePath = "";
@@ -58,6 +59,7 @@ public class DocumentDatabaseImporterWindow : EditorWindow
                 path = selected;
             }
         }
+
         EditorGUILayout.EndHorizontal();
     }
 
@@ -106,7 +108,7 @@ public class DocumentDatabaseImporterWindow : EditorWindow
             var doc = new ResumeDocument();
             SetPrivateField(doc, "userName", values[0]);
             SetPrivateField(doc, "gender", values[1]);
-            SetPrivateField(doc, "race" , values[2]);
+            SetPrivateField(doc, "race", values[2]);
             SetPrivateField(doc, "academicBackground", values[3]);
             SetPrivateField(doc, "selfPromotion", values[4]);
 
@@ -172,7 +174,7 @@ public class DocumentDatabaseImporterWindow : EditorWindow
                 list[i].SelfPromotion;
         }
     }
-    
+
     private void SetProposalArray(SerializedObject so, List<ProposalDocument> list)
     {
         SerializedProperty arrayProp = so.FindProperty("proposalDocuments");
@@ -196,3 +198,4 @@ public class DocumentDatabaseImporterWindow : EditorWindow
         }
     }
 }
+# endif

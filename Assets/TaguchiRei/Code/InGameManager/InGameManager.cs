@@ -104,7 +104,7 @@ public class InGameManager : MonoBehaviour
     /// </summary>
     private void GenerateDocument()
     {
-        _documentData = _documentDB.Document[Random.Range(0, _documentDB.Document.Count)];
+        _documentData = _documentDB.GetRandomDocument();
         _document = Instantiate(_documentData.Prefab).GetComponent<Document>();
         
         var documentText = _documentData.DocumentType switch
