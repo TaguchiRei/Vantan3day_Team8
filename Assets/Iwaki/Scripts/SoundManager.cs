@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _bgmAudioSource;
     [SerializeField] private AudioSource _seAudioSource;
 
+    private float _defaultSEVolume;
+
     private static SoundManager Instance
     {
         get
@@ -34,6 +36,7 @@ public class SoundManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         _instance = this;
+        _defaultSEVolume = _seAudioSource.volume;
     }
 
     public static void PlayBGM(BGMType type)
@@ -43,7 +46,12 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySE(SEType type)
     {
-        Instance.Play(type);
+        Instance.Play(type, Instance._defaultSEVolume);
+    }
+
+    public static void PlaySE(SEType type, float volume)
+    {
+        Instance.Play(type, volume);
     }
 
     private void Play(BGMType type)
@@ -59,7 +67,7 @@ public class SoundManager : MonoBehaviour
         _bgmAudioSource.Play();
     }
 
-    private void Play(SEType type)
+    private void Play(SEType type, float volume)
     {
         if (_seDatabase == null)
         {
@@ -68,6 +76,6 @@ public class SoundManager : MonoBehaviour
         }
 
         var se = _seDatabase.GetSE(type);
-        _seAudioSource.PlayOneShot(se);
+        _seAudioSource.PlayOneShot(se, volume);
     }
 }

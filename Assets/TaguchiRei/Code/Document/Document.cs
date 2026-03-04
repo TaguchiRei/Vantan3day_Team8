@@ -1,16 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class Document : MonoBehaviour
 {
     private const int HideOrder = 10;
-    [SerializeField] SpriteRenderer _sprite;
-    [SerializeField] Animator _animator;
-    [SerializeField] SealImpression _seal;
-
-    public void ShowDoc(Sprite sprite)
-    {
-        _sprite.sprite = sprite;
-    }
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SealImpression _seal;
+    [SerializeField] private TextMeshProUGUI[] _texts;
 
     public void HideDoc(Sprite hankoSprite, bool apply)
     {
