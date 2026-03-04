@@ -7,4 +7,9 @@ public class CharacterAnimator : MonoBehaviour
     {
         _animator.SetTrigger("Press");
     }
+
+    public void GameEnd()
+    {
+        _animator.SetBool("HasEnded", true);
+    }
 }

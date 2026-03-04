@@ -1,17 +1,21 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private EndingDatabase _endingDatabase;
-    [SerializeField] private FadeManager _fadeManager;
+    [SerializeField]
+    private EndingDatabase _endingDatabase;
+
+    [SerializeField]
+    private FadeManager _fadeManager;
+
     public static GameManager Instance;
 
     public int ResultScore;
     public EndingType EndingType;
 
     public StampType LastStamp;
+    
 
     private void Awake()
     {
@@ -24,51 +28,41 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
     {
         _ = _fadeManager.FadeOut();
+    }
+
+    public async void LoadTitleScene()
+    {
+        await _fadeManager.FadeIn(destroyCancellationToken);
+        await SceneManager.LoadSceneAsync("Title");
         SoundManager.PlayBGM(BGMType.Title);
+        await _fadeManager.FadeOut(destroyCancellationToken);
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public async void LoadInGameScene()
     {
-        _ = _fadeManager.FadeOut();
+        await _fadeManager.FadeIn(destroyCancellationToken);
+        await SceneManager.LoadSceneAsync("InGame");
+        SoundManager.PlayBGM(BGMType.InGame);
+        await _fadeManager.FadeOut(destroyCancellationToken);
     }
 
-    public void LoadTitleScene()
+    public async void LoadResultScene()
     {
-        _ = _fadeManager.FadeIn(() =>
+        await _fadeManager.FadeIn(destroyCancellationToken);
+        await SceneManager.LoadSceneAsync("Result");
+        var bgmType = EndingType switch
         {
-            SoundManager.PlayBGM(BGMType.Title);
-            SceneManager.LoadScene("Title");
-        });
-    }
-
-    public void LoadInGameScene()
-    {
-        _ = _fadeManager.FadeIn(() =>
-        {
-            SoundManager.PlayBGM(BGMType.InGame);
-            SceneManager.LoadScene("InGame");
-        });
-    }
-
-    public void LoadResultScene()
-    {
-        _ = _fadeManager.FadeIn(() =>
-        {
-            SceneManager.LoadScene("Result");
-            var bgmType = EndingType switch
-            {
-                EndingType.Good => BGMType.ResultGood,
-                EndingType.Normal => BGMType.ResultNormal,
-                _ => BGMType.ResultBad
-            };
-            SoundManager.PlayBGM(bgmType);
-        });
+            EndingType.Good => BGMType.ResultGood,
+            EndingType.Normal => BGMType.ResultNormal,
+            _ => BGMType.ResultBad
+        };
+        SoundManager.PlayBGM(bgmType);
+        await _fadeManager.FadeOut(destroyCancellationToken);
     }
 
     public void SaveResult(int score, EndingType endingType, StampType lastStamp)

@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
-using System.Reflection;
 
 #if UNITY_EDITOR
-public class DocumentDatabaseImporterWindow : EditorWindow
+public class ExcelDocumentImporter : EditorWindow
 {
     private string resumePath = "";
     private string proposalPath = "";
@@ -14,15 +13,15 @@ public class DocumentDatabaseImporterWindow : EditorWindow
     [MenuItem("Tools/Document Database Importer")]
     public static void Open()
     {
-        GetWindow<DocumentDatabaseImporterWindow>("Document Importer");
+        GetWindow<ExcelDocumentImporter>("Document Importer");
     }
 
     private void OnGUI()
     {
         GUILayout.Label("CSV Settings", EditorStyles.boldLabel);
 
-        DrawFileSelector("履歴書のCSVパス", ref resumePath);
-        DrawFileSelector("企画書のCSVパス", ref proposalPath);
+        DrawFileSelector("Resume CSV", ref resumePath);
+        DrawFileSelector("Proposal CSV", ref proposalPath);
 
         GUILayout.Space(10);
 
@@ -77,24 +76,19 @@ public class DocumentDatabaseImporterWindow : EditorWindow
             return;
         }
 
-        var resumeList = LoadResumeCSV(resumePath);
         var proposalList = LoadProposalCSV(proposalPath);
+        var resumeList = LoadResumeCSV(resumePath);
 
-        SerializedObject so = new SerializedObject(targetDatabase);
+        targetDatabase.SetData(proposalList.ToArray(), resumeList.ToArray());
 
-        SetResumeArray(so, resumeList);
-        SetProposalArray(so, proposalList);
-
-        so.ApplyModifiedProperties();
         EditorUtility.SetDirty(targetDatabase);
-
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
         Debug.Log("Database updated.");
     }
 
-    private List<ResumeDocument> LoadResumeCSV(string path)
+    private static List<ResumeDocument> LoadResumeCSV(string path)
     {
         var list = new List<ResumeDocument>();
         var lines = File.ReadAllLines(path);
@@ -105,12 +99,14 @@ public class DocumentDatabaseImporterWindow : EditorWindow
 
             var values = lines[i].Split(',');
 
-            var doc = new ResumeDocument();
-            SetPrivateField(doc, "userName", values[0]);
-            SetPrivateField(doc, "gender", values[1]);
-            SetPrivateField(doc, "race", values[2]);
-            SetPrivateField(doc, "academicBackground", values[3]);
-            SetPrivateField(doc, "selfPromotion", values[4]);
+            ResumeDocument doc = new ResumeDocument
+            (
+                values[0].Trim(),
+                values[1].Trim(),
+                values[2].Trim(),
+                values[3].Trim(),
+                values[4].Trim()
+            );
 
             list.Add(doc);
         }
@@ -118,7 +114,7 @@ public class DocumentDatabaseImporterWindow : EditorWindow
         return list;
     }
 
-    private List<ProposalDocument> LoadProposalCSV(string path)
+    private static List<ProposalDocument> LoadProposalCSV(string path)
     {
         var list = new List<ProposalDocument>();
         var lines = File.ReadAllLines(path);
@@ -129,73 +125,18 @@ public class DocumentDatabaseImporterWindow : EditorWindow
 
             var values = lines[i].Split(',');
 
-            var doc = new ProposalDocument();
-            SetPrivateField(doc, "proposalTitle", values[0]);
-            SetPrivateField(doc, "userName", values[1]);
-            SetPrivateField(doc, "purpose", values[2]);
-            SetPrivateField(doc, "cost", values[3]);
+            ProposalDocument doc = new ProposalDocument
+            (
+                values[0].Trim(),
+                values[1].Trim(),
+                values[2].Trim(),
+                values[3].Trim()
+            );
 
             list.Add(doc);
         }
 
         return list;
     }
-
-    private void SetPrivateField(object target, string fieldName, object value)
-    {
-        var field = target.GetType()
-            .GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
-
-        field?.SetValue(target, value);
-    }
-
-    private void SetResumeArray(SerializedObject so, List<ResumeDocument> list)
-    {
-        SerializedProperty arrayProp = so.FindProperty("resumeDocuments");
-        arrayProp.arraySize = list.Count;
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            SerializedProperty element = arrayProp.GetArrayElementAtIndex(i);
-
-            element.FindPropertyRelative("userName").stringValue =
-                list[i].UserName;
-
-            element.FindPropertyRelative("gender").stringValue =
-                list[i].Gender;
-
-            element.FindPropertyRelative("race").stringValue =
-                list[i].Race;
-
-            element.FindPropertyRelative("academicBackground").stringValue =
-                list[i].AcademicBackground;
-
-            element.FindPropertyRelative("selfPromotion").stringValue =
-                list[i].SelfPromotion;
-        }
-    }
-
-    private void SetProposalArray(SerializedObject so, List<ProposalDocument> list)
-    {
-        SerializedProperty arrayProp = so.FindProperty("proposalDocuments");
-        arrayProp.arraySize = list.Count;
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            SerializedProperty element = arrayProp.GetArrayElementAtIndex(i);
-
-            element.FindPropertyRelative("proposalTitle").stringValue =
-                list[i].ProposalTitle;
-
-            element.FindPropertyRelative("userName").stringValue =
-                list[i].UserName;
-
-            element.FindPropertyRelative("purpose").stringValue =
-                list[i].Purpose;
-
-            element.FindPropertyRelative("cost").stringValue =
-                list[i].Cost;
-        }
-    }
 }
-# endif
+#endif
