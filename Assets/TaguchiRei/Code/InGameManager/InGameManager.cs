@@ -128,6 +128,7 @@ public class InGameManager : MonoBehaviour
         SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
+            SoundManager.PlaySE(SEType.DocumentCorrect);
 
             switch (_documentData.EndingFlag)
             {
