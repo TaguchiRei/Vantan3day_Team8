@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 public class InGameManager : MonoBehaviour
 {
@@ -10,9 +9,8 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private Document _documentPrefab;
     [SerializeField] private DocumentDataBase _documentDB;
     [SerializeField] private DocumentTextDatabase _documentTextDB;
-    [SerializeField] private StampInstance _stampInstance;
     [SerializeField] private StampDataBase _stampDB;
-
+    [SerializeField] private CharacterAnimator _characterAnimator;
     [SerializeField] private Bundle _startObject;
 
     [Header("GameSetting")] [SerializeField, Min(0)]
@@ -124,7 +122,7 @@ public class InGameManager : MonoBehaviour
     private void PressDocument(StampType stampType)
     {
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
-        _stampInstance.PressTheStamp(stamp.MainSprite);
+        _characterAnimator.Press();
         SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
