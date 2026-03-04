@@ -915,6 +915,7 @@ MonoBehaviour:
   _timeLimit: 30
   _documentPrefab: {fileID: 3797772421702381198, guid: d475650437faef84786165640b0bed5c, type: 3}
   _documentDB: {fileID: 11400000, guid: 043a391614d504347972bfe77b5b6633, type: 2}
+  _documentTextDB: {fileID: 11400000, guid: 78b1fbd8ef5c7ff49a1e7763e0294252, type: 2}
   _stampInstance: {fileID: 166833878}
   _stampDB: {fileID: 11400000, guid: 3d19d0f12aaa1cb4296fcf514f0907f7, type: 2}
   _startObject: {fileID: 1236709434}

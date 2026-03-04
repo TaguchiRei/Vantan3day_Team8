@@ -7,7 +7,7 @@ public class Document : MonoBehaviour
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private Animator _animator;
     [SerializeField] private SealImpression _seal;
-    [SerializeField] private TextMeshProUGUI[] _texts;
+    [SerializeField] private TMP_Text[] _texts;
 
     public void HideDoc(Sprite hankoSprite, bool apply)
     {
@@ -20,6 +20,21 @@ public class Document : MonoBehaviour
         else
         {
             _animator.SetTrigger("Destruction");
+        }
+    }
+    
+    public void SetText(params string[] text)
+    {
+        for (int i = 0; i < _texts.Length; i++)
+        {
+            if (i < text.Length)
+            {
+                _texts[i].text = text[i];
+            }
+            else
+            {
+                _texts[i].text = string.Empty;
+            }
         }
     }
 

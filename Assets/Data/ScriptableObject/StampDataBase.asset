@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StampDataBase
   AllStamp:
   - Type: 0
-    Texture: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    MainSprite: {fileID: 0}
+    ShadowSprite: {fileID: -2590220632388952607, guid: ca88b6d07d0061647a0cbbb12671a4e1, type: 3}
   - Type: 1
-    Texture: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    MainSprite: {fileID: 0}
+    ShadowSprite: {fileID: -131584120199531451, guid: 1753d512a95961741a5f37f0b40c8b94, type: 3}
