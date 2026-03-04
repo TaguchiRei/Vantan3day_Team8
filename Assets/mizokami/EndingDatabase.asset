@@ -14,14 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndingDatabase
   _endings:
   - Type: 0
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: "\u89E3\u96C7"
   - Type: 1
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: Normal
   - Type: 2
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: "\u6607\u9032"
   - Type: 3
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: "\u7D50\u5A5A"
   - Type: 4
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: "\u96E2\u5A5A"
   - Type: 5
-    Image: {fileID: 0}
+    Sprite: {fileID: 0}
+    EndingTexts:
+    - Type: 0
+      Text: "\u60AA\u9B54\u53EC\u559A"
