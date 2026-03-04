@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InGameManager : MonoBehaviour
 {
+    public float NowTime;
     [SerializeField] private int _timeLimit;
     [SerializeField] private Document _documentPrefab;
     [SerializeField] private DocumentDataBase _documentDB;
@@ -33,12 +34,14 @@ public class InGameManager : MonoBehaviour
     private int _totalScore = 0;
     private float _timeCount = 0;
     private bool _miss;
+    private float _gameStartTime;
 
     public event Action<int> OnScoreChanged;
     public int TimeLimit => _timeLimit;
 
     private void Start()
     {
+        NowTime = TimeLimit;
         _startObject.PlayStartAction += PlayStart;
         _startObject.Animator.SetTrigger("Start");
         _routine = StartCoroutine(InGameTimer());
@@ -121,6 +124,7 @@ public class InGameManager : MonoBehaviour
     /// <param name="stampType"></param>
     private void PressDocument(StampType stampType)
     {
+        if (_document == null) return;
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
         _characterAnimator.Press();
         SoundManager.PlaySE(SEType.HankoPress);
@@ -189,7 +193,12 @@ public class InGameManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator InGameTimer()
     {
-        yield return new WaitForSeconds(_timeLimit);
+        _gameStartTime = Time.time;
+        for (int i = 0; i < _timeLimit; i++)
+        {
+            yield return new WaitForSeconds(1);
+            NowTime = Time.time - _gameStartTime;
+        }
 
         EndingType type;
         if (_totalScore < _score + _badLimit)
