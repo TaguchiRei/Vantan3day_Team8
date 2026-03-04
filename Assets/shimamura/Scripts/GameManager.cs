@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public int ResultScore;
     public EndingType EndingType;
 
-    private StampType _lastStamp;
+    public StampType LastStamp;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         ResultScore = score;
         EndingType = endingType;
-        _lastStamp = lastStamp;
+        LastStamp = lastStamp;
     }
 
     public EndingEntry GetResult()
