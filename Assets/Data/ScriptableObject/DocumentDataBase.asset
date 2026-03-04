@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DocumentDataBase
   Document:
   - Prefab: {fileID: 9149681422772515743, guid: d475650437faef84786165640b0bed5c, type: 3}
-    Weight: 50
+    Weight: 40
     DocumentType: 0
     CorrectStamp: 0
     EndingFlag: 0
   - Prefab: {fileID: 9149681422772515743, guid: 87b552c3217a5814682aa6be019471ea, type: 3}
-    Weight: 50
+    Weight: 40
     DocumentType: 1
     CorrectStamp: 1
     EndingFlag: 0
