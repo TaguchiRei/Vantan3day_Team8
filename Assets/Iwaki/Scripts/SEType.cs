@@ -1,7 +1,11 @@
 public enum SEType
 {
-    HankoPickup,
     HankoPress,
     DocumentMove,
+    DocumentDispose,
+    DocumentMistake,
     ButtonPress,
+    InGameBegin,
+    InGameEnd,
+    InGameCountDown
 }

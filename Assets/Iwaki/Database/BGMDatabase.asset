@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BGMDatabase
   _sounds:
   - Type: 0
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 3820b3b7e23943946a1c72ff1fe817bd, type: 3}
   - Type: 1
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 42db24cd192df7b489e30c4bbe410a91, type: 3}
   - Type: 2
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 388ecc84e9566bb45975509c569a8068, type: 3}
   - Type: 3
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 640ea6ab6d290dc4e9d9453ccf6f511a, type: 3}
   - Type: 4
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: abdc4e7f988d2dd48aae6bacb3cd8c9a, type: 3}

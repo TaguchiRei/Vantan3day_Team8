@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: DocumentDataBase
   m_EditorClassIdentifier: Assembly-CSharp::DocumentDataBase
   Document:
-  - Image: {fileID: 21300000, guid: 9e76354669e33844985b1849cf647885, type: 3}
+  - Prefab: {fileID: 9149681422772515743, guid: d475650437faef84786165640b0bed5c, type: 3}
+    Weight: 40
+    DocumentType: 0
     CorrectStamp: 0
     EndingFlag: 0
-  - Image: {fileID: 21300000, guid: a711b91b3eaffb74ba849f6728f4c252, type: 3}
+  - Prefab: {fileID: 9149681422772515743, guid: 87b552c3217a5814682aa6be019471ea, type: 3}
+    Weight: 40
+    DocumentType: 1
     CorrectStamp: 1
     EndingFlag: 0
-  - Image: {fileID: 21300000, guid: 59aa57b6a86ca6b4880e2b8b7509739f, type: 3}
+  - Prefab: {fileID: 9149681422772515743, guid: b6f3494ed032a3143af2652a0614dc4d, type: 3}
+    Weight: 10
+    DocumentType: 2
     CorrectStamp: 0
     EndingFlag: 1
-  - Image: {fileID: 21300000, guid: f99b206b534e6574f9311b941f0b410d, type: 3}
+  - Prefab: {fileID: 9149681422772515743, guid: 8d14f1074d7ef5940bab3356a4e28832, type: 3}
+    Weight: 10
+    DocumentType: 3
     CorrectStamp: 0
     EndingFlag: 2
-  - Image: {fileID: 21300000, guid: c1855683bcc930a4588989c8dde3b655, type: 3}
-    CorrectStamp: 0
-    EndingFlag: 2
+  - Prefab: {fileID: 9149681422772515743, guid: 979deb9c38dcf2e428d875fdc6fbac9f, type: 3}
+    Weight: 10
+    DocumentType: 4
+    CorrectStamp: 2
+    EndingFlag: 3
