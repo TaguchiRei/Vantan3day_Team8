@@ -892,8 +892,9 @@ MonoBehaviour:
   _documentPrefab: {fileID: 3797772421702381198, guid: d475650437faef84786165640b0bed5c, type: 3}
   _documentDB: {fileID: 11400000, guid: 043a391614d504347972bfe77b5b6633, type: 2}
   _documentTextDB: {fileID: 11400000, guid: 78b1fbd8ef5c7ff49a1e7763e0294252, type: 2}
+  _npcPhotoDB: {fileID: 11400000, guid: da20dc784eea0fb4d8230e66a213b6fc, type: 2}
   _stampDB: {fileID: 11400000, guid: 3d19d0f12aaa1cb4296fcf514f0907f7, type: 2}
-  _animator: {fileID: 388034778}
+  _characterAnimator: {fileID: 388034778}
   _startObject: {fileID: 1236709434}
   _score: 100
   _bonus: 50

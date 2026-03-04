@@ -835,6 +835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Document
   _sprite: {fileID: 2321790282944556069}
+  _faceParts: {fileID: 0}
+  _hairParts: {fileID: 0}
   _animator: {fileID: 52480533567822578}
   _seal: {fileID: 6002458372068314862}
   _texts:
