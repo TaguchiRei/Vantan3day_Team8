@@ -105,7 +105,6 @@ public class InGameManager : MonoBehaviour
     {
         _document = Instantiate(_documentPrefab);
         _documentData = _documentDB.Document[Random.Range(0, _documentDB.Document.Count)];
-        _document.ShowDoc(_documentData.Image);
     }
 
     /// <summary>

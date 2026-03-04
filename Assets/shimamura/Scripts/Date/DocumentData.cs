@@ -5,12 +5,9 @@ using UnityEngine;
 [Serializable]
 public class DocumentData
 {
-	[Header("書類の見た目")]
-	public Sprite Image;
+    [Header("書類の見た目")] public GameObject Image;
 
-	[Header("正解のハンコ")]
-	public StampType CorrectStamp;
+    [Header("正解のハンコ")] public StampType CorrectStamp;
 
-	[Header("エンディングフラグ")]
-	public EndingFlag EndingFlag;
+    [Header("エンディングフラグ")] public EndingFlag EndingFlag;
 }

@@ -7,11 +7,6 @@ public class Document : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] SealImpression _seal;
 
-    public void ShowDoc(Sprite sprite)
-    {
-        _sprite.sprite = sprite;
-    }
-
     public void HideDoc(Sprite hankoSprite, bool apply)
     {
         _sprite.sortingOrder += HideOrder;
