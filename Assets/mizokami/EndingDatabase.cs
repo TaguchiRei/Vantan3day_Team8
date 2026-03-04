@@ -19,5 +19,12 @@ public struct EndingEntry
 {
     public EndingType Type;
     public Sprite Sprite;
-    public string EndingText;
+    public EndingTextData[] EndingTexts;
+}
+
+[Serializable]
+public struct EndingTextData
+{
+    public StampType Type;
+    public string Text;
 }
