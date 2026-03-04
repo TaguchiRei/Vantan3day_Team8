@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b29bba340d97314e82a242ab1f71703, type: 3}
+  m_Name: DocumentDataBase
+  m_EditorClassIdentifier: Assembly-CSharp::DocumentDataBase
+  Document:
+  - Prefab: {fileID: 9149681422772515743, guid: d475650437faef84786165640b0bed5c, type: 3}
+    Weight: 40
+    DocumentType: 0
+    CorrectStamp: 0
+    EndingFlag: 0
+  - Prefab: {fileID: 9149681422772515743, guid: 87b552c3217a5814682aa6be019471ea, type: 3}
+    Weight: 40
+    DocumentType: 1
+    CorrectStamp: 1
+    EndingFlag: 0
+  - Prefab: {fileID: 9149681422772515743, guid: b6f3494ed032a3143af2652a0614dc4d, type: 3}
+    Weight: 10
+    DocumentType: 2
+    CorrectStamp: 0
+    EndingFlag: 1
+  - Prefab: {fileID: 9149681422772515743, guid: 8d14f1074d7ef5940bab3356a4e28832, type: 3}
+    Weight: 10
+    DocumentType: 3
+    CorrectStamp: 0
+    EndingFlag: 2
+  - Prefab: {fileID: 9149681422772515743, guid: 979deb9c38dcf2e428d875fdc6fbac9f, type: 3}
+    Weight: 10
+    DocumentType: 4
+    CorrectStamp: 2
+    EndingFlag: 3

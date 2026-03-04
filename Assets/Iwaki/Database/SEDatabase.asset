@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f87e4c00b4ba54aa58cd4df41e2254, type: 3}
+  m_Name: SEDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SEDatabase
+  _sounds:
+  - Type: 0
+    Clip: {fileID: 8300000, guid: e53fa096d53919744aefe3c0c64a6bfb, type: 3}
+  - Type: 1
+    Clip: {fileID: 8300000, guid: ec8c31e0a213a5043a544ef10047c8f6, type: 3}
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 5b7c3b14fafb4e448a205dc8b3148f02, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: a65e2f9d73b82d44d988d1ac913164fd, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: d3b61d46ae001a94d909715398a3100d, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: b3fb08f92efb634478d9c9857fe19645, type: 3}
+  - Type: 8
+    Clip: {fileID: 8300000, guid: 2cd31cdacbdaf0d41ba263964b7159e8, type: 3}
+  - Type: 6
+    Clip: {fileID: 8300000, guid: 786ea70d73a18ae4fb0592c76f488de7, type: 3}
+  - Type: 7
+    Clip: {fileID: 8300000, guid: 08156aff2286f394f881420a2d651a3d, type: 3}
