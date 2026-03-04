@@ -35,7 +35,7 @@ public class InGameManager : MonoBehaviour
     private int _totalScore = 0;
     private float _timeCount = 0;
     private bool _miss;
-    
+
     public event Action<int> OnScoreChanged;
     public int TimeLimit => _timeLimit;
 
@@ -106,7 +106,7 @@ public class InGameManager : MonoBehaviour
     {
         _documentData = _documentDB.GetRandomDocument();
         _document = Instantiate(_documentData.Prefab).GetComponent<Document>();
-        
+
         var documentText = _documentData.DocumentType switch
         {
             DocumentType.Proposal => _documentTextDB.GetRandomProposalDocument().GetText(),
@@ -128,7 +128,6 @@ public class InGameManager : MonoBehaviour
         SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
-
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
@@ -136,33 +135,33 @@ public class InGameManager : MonoBehaviour
                     InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.marriage, stampType);
                     GameManager.Instance.LoadResultScene();
-                    return;
+                    break;
                 case EndingFlag.Divorce:
                     InputRegistration(false);
                     InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.divorce, stampType);
                     GameManager.Instance.LoadResultScene();
-                    return;
+                    break;
                 case EndingFlag.DevilSummon:
                     InputRegistration(false);
                     InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.devil, stampType);
                     GameManager.Instance.LoadResultScene();
-                    return;
+                    break;
                 default:
-                    _document.HideDoc(stamp.ShadowSprite, true);
+                    SoundManager.PlaySE(SEType.DocumentCorrect);
                     _totalScore += _score;
                     if (_timeCount < _bonusTime)
                     {
                         _totalScore += _bonus;
                     }
-                    SoundManager.PlaySE(SEType.DocumentCorrect);
-                    OnScoreChanged?.Invoke(_totalScore);
 
+                    OnScoreChanged?.Invoke(_totalScore);
+                    _timeCount = 0;
                     break;
             }
 
-            _timeCount = 0;
+            _document.HideDoc(stamp.ShadowSprite, true);
         }
         else
         {
