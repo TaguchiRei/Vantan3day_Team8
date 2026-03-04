@@ -153,7 +153,7 @@ public class InGameManager : MonoBehaviour
         }
         else
         {
-            //TODO SoundManager.PlaySE(); 失敗時SEを再生するようにする。Enumを追加する必要あり
+            SoundManager.PlaySE(SEType.DocumentMistake);
 
             _totalScore -= _missScore;
             _document.HideDoc(stamp.ShadowSprite, true);
@@ -167,7 +167,7 @@ public class InGameManager : MonoBehaviour
     /// </summary>
     private void PathDocument()
     {
-        //TODO : パスしたときの音を流す機能を実装する。Enumを追加する必要あり
+        SoundManager.PlaySE(SEType.DocumentDispose);
 
         _document.HideDoc(null, false);
         GenerateDocument();
