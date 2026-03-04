@@ -7,7 +7,7 @@ public class Document : MonoBehaviour
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private Animator _animator;
     [SerializeField] private SealImpression _seal;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextMeshProUGUI[] _texts;
 
     public void HideDoc(Sprite hankoSprite, bool apply)
     {
