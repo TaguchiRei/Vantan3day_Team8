@@ -10,6 +10,12 @@ public class DocumentTextDatabase : ScriptableObject
     [SerializeField]
     private ResumeDocument[] resumeDocuments;
 
+    public void SetData(ProposalDocument[] proposalDocuments, ResumeDocument[] resumeDocuments)
+    {
+        this.proposalDocuments = proposalDocuments;
+        this.resumeDocuments = resumeDocuments;
+    }
+
     public IDocument GetRandomProposalDocument()
     {
         if (proposalDocuments.Length == 0)
@@ -38,6 +44,15 @@ public class DocumentTextDatabase : ScriptableObject
 [Serializable]
 public struct ResumeDocument : IDocument
 {
+    public ResumeDocument(string userName, string gender, string race, string academicBackground, string selfPromotion)
+    {
+        this.userName = userName;
+        this.gender = gender;
+        this.race = race;
+        this.academicBackground = academicBackground;
+        this.selfPromotion = selfPromotion;
+    }
+
     public string UserName => userName;
     public string Gender => gender;
     public string Race => race;
@@ -74,6 +89,14 @@ public struct ResumeDocument : IDocument
 [Serializable]
 public struct ProposalDocument : IDocument
 {
+    public ProposalDocument(string proposalTitle, string userName, string purpose, string cost)
+    {
+        this.proposalTitle = proposalTitle;
+        this.userName = userName;
+        this.purpose = purpose;
+        this.cost = cost;
+    }
+
     public string ProposalTitle => proposalTitle;
     public string UserName => userName;
     public string Purpose => purpose;
