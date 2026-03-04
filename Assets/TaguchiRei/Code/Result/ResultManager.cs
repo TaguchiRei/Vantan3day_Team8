@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using unityroom.Api;
 
 public class ResultManager : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class ResultManager : MonoBehaviour
     public void Start()
     {
         var result = GameManager.Instance.GetResult();
+        var score = GameManager.Instance.ResultScore;
         _spriteRenderer.sprite = result.Sprite;
         _tmp.text = result.EndingText;
-        _scoreText.text = "Score : " + GameManager.Instance.ResultScore;
+        _scoreText.text = "Score : " + score;
+
+        UnityroomApiClient.Instance.SendScore(1, 123.45f, ScoreboardWriteMode.Always);
     }
 }
