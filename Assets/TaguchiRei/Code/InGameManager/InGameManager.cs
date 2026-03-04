@@ -9,6 +9,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private Document _documentPrefab;
     [SerializeField] private DocumentDataBase _documentDB;
     [SerializeField] private DocumentTextDatabase _documentTextDB;
+    [SerializeField] private NPCPhotoDatabase _npcPhotoDB;
     [SerializeField] private StampDataBase _stampDB;
     [SerializeField] private CharacterAnimator _characterAnimator;
     [SerializeField] private Bundle _startObject;
@@ -23,7 +24,6 @@ public class InGameManager : MonoBehaviour
 
     [Header("StartSetting")] [SerializeField]
     private float _startTime = 1.5f;
-
 
     private Document _document;
     private DocumentData _documentData;
@@ -111,7 +111,13 @@ public class InGameManager : MonoBehaviour
             DocumentType.Resume => _documentTextDB.GetRandomResumeDocument().GetText(),
             _ => Array.Empty<string>()
         };
+        
         _document.SetText(documentText);
+
+        if (_documentData.DocumentType == DocumentType.Resume)
+        {
+            _document.SetPhoto(_npcPhotoDB.GetRandomNPCPhoto());
+        }
     }
 
     /// <summary>
