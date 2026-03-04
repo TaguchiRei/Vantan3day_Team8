@@ -24,6 +24,7 @@ public class FadeManager : MonoBehaviour
             fadeImage.alpha = alpha;
             await UniTask.Yield();
         }
+        await UniTask.Yield();
         onComplete?.Invoke();
     }   
     
@@ -38,6 +39,7 @@ public class FadeManager : MonoBehaviour
             fadeImage.alpha = alpha;
             await UniTask.Yield();
         }
+        await UniTask.Yield();
         fadeImage.interactable = false;
         fadeImage.blocksRaycasts = false;
     }

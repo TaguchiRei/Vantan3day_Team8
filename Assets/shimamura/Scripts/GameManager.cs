@@ -24,16 +24,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
     {
         _ = _fadeManager.FadeOut();
         SoundManager.PlayBGM(BGMType.Title);
-        SceneManager.sceneLoaded += (_, _) => OnSceneLoaded();
     }
 
-    private void OnSceneLoaded()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         _ = _fadeManager.FadeOut();
     }
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     {
         _ = _fadeManager.FadeIn(() =>
         {
-            SceneManager.LoadScene("Title");
             SoundManager.PlayBGM(BGMType.Title);
+            SceneManager.LoadScene("Title");
         });
     }
 
@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     {
         _ = _fadeManager.FadeIn(() =>
         {
-            SceneManager.LoadScene("InGame");
             SoundManager.PlayBGM(BGMType.InGame);
+            SceneManager.LoadScene("InGame");
         });
     }
 
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         _ = _fadeManager.FadeIn(() =>
         {
+            SceneManager.LoadScene("Result");
             var bgmType = EndingType switch
             {
                 EndingType.Good => BGMType.ResultGood,
@@ -67,7 +68,6 @@ public class GameManager : MonoBehaviour
                 _ => BGMType.ResultBad
             };
             SoundManager.PlayBGM(bgmType);
-            SceneManager.LoadScene("Result");
         });
     }
 
