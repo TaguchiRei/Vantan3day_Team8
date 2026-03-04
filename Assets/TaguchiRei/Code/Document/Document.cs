@@ -11,7 +11,6 @@ public class Document : MonoBehaviour
 
     public void HideDoc(Sprite hankoSprite, bool apply)
     {
-        _sprite.sortingOrder += HideOrder;
         if (apply)
         {
             _seal.ShowSeal(hankoSprite);
