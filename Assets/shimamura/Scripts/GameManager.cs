@@ -3,11 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private EndingDatabase _endingDatabase;
+    [SerializeField] private EndingDatabase _endingDatabase;
 
-    [SerializeField]
-    private FadeManager _fadeManager;
+    [SerializeField] private FadeManager _fadeManager;
 
     public static GameManager Instance;
 
@@ -15,7 +13,7 @@ public class GameManager : MonoBehaviour
     public EndingType EndingType;
 
     public StampType LastStamp;
-    
+
 
     private void Awake()
     {
@@ -33,6 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _ = _fadeManager.FadeOut();
+        SoundManager.PlayBGM(BGMType.Title);
     }
 
     public async void LoadTitleScene()
