@@ -887,6 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff43b4b9d39aacd4fbff8226db8e376c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InGameManager
+  NowTime: 0
   _timeLimit: 30
   _documentPrefab: {fileID: 3797772421702381198, guid: d475650437faef84786165640b0bed5c, type: 3}
   _documentDB: {fileID: 11400000, guid: 043a391614d504347972bfe77b5b6633, type: 2}
@@ -1077,6 +1078,10 @@ PrefabInstance:
       value: InGameCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3822955506519984279, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: _image
+      value: 
+      objectReference: {fileID: 221418078528118768}
+    - target: {fileID: 3822955506519984279, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
       propertyPath: _inGameManager
       value: 
       objectReference: {fileID: 1313887265}
@@ -1164,11 +1169,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7827049643806956909, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 344
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827049643806956909, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 171
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+--- !u!114 &221418078528118768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759096143579277474, guid: bb85a25a4c9e3bb48953bcd05f1e096c, type: 3}
+  m_PrefabInstance: {fileID: 221418078528118767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
