@@ -101,3 +101,5 @@ Assets/TextMesh Pro
 Assets/TextMesh
 Assets/LocalAsset/*
 !Assets/LocalAsset/.gitkeep
+Assets/shimamura/Fonts
+Assets/GameJamFonts
