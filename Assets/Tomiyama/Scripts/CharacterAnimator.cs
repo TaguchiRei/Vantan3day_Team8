@@ -3,9 +3,15 @@ using UnityEngine;
 public class CharacterAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    public void Press()
+    public void Press(StampType stampType)
     {
-        _animator.SetTrigger("Press");
+        var triggerName = stampType switch
+        {
+            StampType.PersonalSeal => "Circle",
+            StampType.CompanySeal => "Square",
+            _ => ""
+        };
+        _animator.SetTrigger(triggerName);
     }
 
     public void GameEnd()

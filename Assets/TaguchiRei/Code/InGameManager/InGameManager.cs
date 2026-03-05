@@ -140,7 +140,7 @@ public class InGameManager : MonoBehaviour
     {
         if (_document == null) return;
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
-        _characterAnimator.Press();
+        _characterAnimator.Press(stampType);
         SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
