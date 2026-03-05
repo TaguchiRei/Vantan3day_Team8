@@ -7,25 +7,52 @@ using UnityEngine.InputSystem;
 public class InGameManager : MonoBehaviour
 {
     public float NowTime;
-    [SerializeField] private int _timeLimit;
-    [SerializeField] private Document _documentPrefab;
-    [SerializeField] private DocumentDataBase _documentDB;
-    [SerializeField] private DocumentTextDatabase _documentTextDB;
-    [SerializeField] private NPCPhotoDatabase _npcPhotoDB;
-    [SerializeField] private StampDataBase _stampDB;
-    [SerializeField] private CharacterAnimator _characterAnimator;
-    [SerializeField] private InGameTextAnimator _inGameTextAnimator;
-    [SerializeField] private Bundle _startObject;
 
-    [Header("GameSetting")] [SerializeField, Min(0)]
+    [SerializeField]
+    private int _timeLimit;
+
+    [SerializeField]
+    private Document _documentPrefab;
+
+    [SerializeField]
+    private DocumentDataBase _documentDB;
+
+    [SerializeField]
+    private DocumentTextDatabase _documentTextDB;
+
+    [SerializeField]
+    private NPCPhotoDatabase _npcPhotoDB;
+
+    [SerializeField]
+    private StampDataBase _stampDB;
+
+    [SerializeField]
+    private CharacterAnimator _characterAnimator;
+
+    [SerializeField]
+    private InGameTextAnimator _inGameTextAnimator;
+
+    [SerializeField]
+    private Bundle _startObject;
+
+    [Header("GameSetting")]
+    [SerializeField, Min(0)]
     private int _score = 100;
 
-    [SerializeField, Min(0)] private int _bonus = 50;
-    [SerializeField, Min(0)] private float _bonusTime = 5;
-    [SerializeField, Min(0)] private int _missScore = 50;
-    [SerializeField, Min(0)] private int _badLimit = 5;
+    [SerializeField, Min(0)]
+    private int _bonus = 50;
 
-    [Header("StartSetting")] [SerializeField]
+    [SerializeField, Min(0)]
+    private float _bonusTime = 5;
+
+    [SerializeField, Min(0)]
+    private int _missScore = 50;
+
+    [SerializeField, Min(0)]
+    private int _badLimit = 5;
+
+    [Header("StartSetting")]
+    [SerializeField]
     private float _startTime = 1.5f;
 
     private Document _document;
@@ -125,14 +152,14 @@ public class InGameManager : MonoBehaviour
             DocumentType.Resume => _documentTextDB.GetRandomResumeDocument().GetText(),
             _ => Array.Empty<string>()
         };
-        
+
         _document.SetText(documentText);
 
         if (_documentData.DocumentType == DocumentType.Resume)
         {
             _document.SetPhoto(_npcPhotoDB.GetRandomNPCPhoto());
         }
-        
+
         SoundManager.PlaySE(SEType.DocumentMove);
     }
 
@@ -181,9 +208,10 @@ public class InGameManager : MonoBehaviour
         else
         {
             SoundManager.PlaySE(SEType.DocumentMistake);
+            _miss = true;
 
             _totalScore -= _missScore;
-            
+
             _document.HideDoc(stamp.ShadowSprite, DocumentAnimationType.Stamp);
 
             GenerateDocument();
@@ -227,7 +255,7 @@ public class InGameManager : MonoBehaviour
         }
 
         EndingType type;
-        if (_totalScore < _score + _badLimit)
+        if (_totalScore < _score * _badLimit)
         {
             type = EndingType.Bad;
         }
