@@ -31,7 +31,7 @@ public class ResultManager : MonoBehaviour
 
         _spriteRenderer.sprite = result.Sprite;
         _tmp.text = text.Text;
-        _scoreText.text = "Score : 0";
+        _scoreText.text = "スコア : 0";
 
         _score = GameManager.Instance.ResultScore;
 
@@ -48,7 +48,7 @@ public class ResultManager : MonoBehaviour
             float rate = _curve.Evaluate(t);
             float value = Mathf.LerpUnclamped(0f, _score, rate);
 
-            _scoreText.text = $"Score : {(int)value}";
+            _scoreText.text = $"スコア : {(int)value}";
         }
     }
 }
