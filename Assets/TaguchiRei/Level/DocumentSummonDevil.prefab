@@ -474,6 +474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Document
   _sprite: {fileID: 2321790282944556069}
+  _faceParts: {fileID: 0}
+  _hairParts: {fileID: 0}
   _animator: {fileID: 52480533567822578}
   _seal: {fileID: 6002458372068314862}
   _texts: []
@@ -582,7 +584,7 @@ SpriteRenderer:
   m_SortingOrder: 11
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2590220632388952607, guid: ca88b6d07d0061647a0cbbb12671a4e1, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

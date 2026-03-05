@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 public class InGameManager : MonoBehaviour
 {
+    public float NowTime;
     [SerializeField] private int _timeLimit;
     [SerializeField] private Document _documentPrefab;
     [SerializeField] private DocumentDataBase _documentDB;
     [SerializeField] private DocumentTextDatabase _documentTextDB;
-    [SerializeField] private StampInstance _stampInstance;
+    [SerializeField] private NPCPhotoDatabase _npcPhotoDB;
     [SerializeField] private StampDataBase _stampDB;
-
+    [SerializeField] private CharacterAnimator _characterAnimator;
+    [SerializeField] private InGameTextAnimator _inGameTextAnimator;
     [SerializeField] private Bundle _startObject;
 
     [Header("GameSetting")] [SerializeField, Min(0)]
@@ -26,7 +28,6 @@ public class InGameManager : MonoBehaviour
     [Header("StartSetting")] [SerializeField]
     private float _startTime = 1.5f;
 
-
     private Document _document;
     private DocumentData _documentData;
 
@@ -35,13 +36,19 @@ public class InGameManager : MonoBehaviour
     private int _totalScore = 0;
     private float _timeCount = 0;
     private bool _miss;
-    
+    private float _gameStartTime;
+
     public event Action<int> OnScoreChanged;
     public int TimeLimit => _timeLimit;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        NowTime = TimeLimit;
         _startObject.PlayStartAction += PlayStart;
+
+        SoundManager.PlaySE(SEType.InGameCountDown);
+        yield return _inGameTextAnimator.Begin().ToCoroutine();
+        SoundManager.PlaySE(SEType.InGameBegin);
         _startObject.Animator.SetTrigger("Start");
         _routine = StartCoroutine(InGameTimer());
     }
@@ -53,7 +60,10 @@ public class InGameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopCoroutine(_routine);
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
     }
 
     private void PlayStart()
@@ -106,14 +116,22 @@ public class InGameManager : MonoBehaviour
     {
         _documentData = _documentDB.GetRandomDocument();
         _document = Instantiate(_documentData.Prefab).GetComponent<Document>();
-        
+
         var documentText = _documentData.DocumentType switch
         {
             DocumentType.Proposal => _documentTextDB.GetRandomProposalDocument().GetText(),
             DocumentType.Resume => _documentTextDB.GetRandomResumeDocument().GetText(),
             _ => Array.Empty<string>()
         };
+        
         _document.SetText(documentText);
+
+        if (_documentData.DocumentType == DocumentType.Resume)
+        {
+            _document.SetPhoto(_npcPhotoDB.GetRandomNPCPhoto());
+        }
+        
+        SoundManager.PlaySE(SEType.DocumentMove);
     }
 
     /// <summary>
@@ -123,56 +141,62 @@ public class InGameManager : MonoBehaviour
     /// <param name="stampType"></param>
     private void PressDocument(StampType stampType)
     {
+        if (_document == null) return;
         var stamp = _stampDB.AllStamp.Find(s => s.Type == stampType);
-        _stampInstance.PressTheStamp(stamp.MainSprite);
+        _characterAnimator.Press(stampType);
         SoundManager.PlaySE(SEType.HankoPress);
         if (_documentData.CorrectStamp == stampType || _documentData.CorrectStamp == StampType.Both)
         {
-            SoundManager.PlaySE(SEType.DocumentCorrect);
-
             switch (_documentData.EndingFlag)
             {
                 case EndingFlag.Marriage:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.marriage, stampType);
-                    GameManager.Instance.LoadResultScene();
-                    return;
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
+                    break;
                 case EndingFlag.Divorce:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.divorce, stampType);
-                    GameManager.Instance.LoadResultScene();
-                    return;
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
+                    break;
                 case EndingFlag.DevilSummon:
-                    InputRegistration(false);
-                    InputDispatcher.Interface.DisableInput();
                     GameManager.Instance.SaveResult(_totalScore, EndingType.devil, stampType);
-                    GameManager.Instance.LoadResultScene();
-                    return;
+                    StartCoroutine(LoadUniqueResult(stamp.ShadowSprite));
+                    break;
                 default:
-                    _document.HideDoc(stamp.ShadowSprite, true);
+                    SoundManager.PlaySE(SEType.DocumentCorrect);
                     _totalScore += _score;
                     if (_timeCount < _bonusTime)
                     {
                         _totalScore += _bonus;
                     }
-                    OnScoreChanged?.Invoke(_totalScore);
 
+                    OnScoreChanged?.Invoke(_totalScore);
+                    _timeCount = 0;
+                    _document.HideDoc(stamp.ShadowSprite, DocumentAnimationType.Stamp);
+                    GenerateDocument();
                     break;
             }
-
-            _timeCount = 0;
         }
         else
         {
             SoundManager.PlaySE(SEType.DocumentMistake);
 
             _totalScore -= _missScore;
-            _document.HideDoc(stamp.ShadowSprite, true);
-        }
+            
+            _document.HideDoc(stamp.ShadowSprite, DocumentAnimationType.Stamp);
 
-        GenerateDocument();
+            GenerateDocument();
+        }
+    }
+
+    private IEnumerator LoadUniqueResult(Sprite stampSprite)
+    {
+        InputRegistration(false);
+        InputDispatcher.Interface.DisableInput();
+        _document.HideDoc(stampSprite, DocumentAnimationType.SpecialEnd);
+        _characterAnimator.GameEnd();
+        const float WAIT_TIME = 1.5f;
+        yield return new WaitForSeconds(WAIT_TIME);
+        GameManager.Instance.LoadResultScene();
     }
 
     /// <summary>
@@ -180,9 +204,10 @@ public class InGameManager : MonoBehaviour
     /// </summary>
     private void PathDocument()
     {
+        if (_document == null) return;
         SoundManager.PlaySE(SEType.DocumentDispose);
 
-        _document.HideDoc(null, false);
+        _document.HideDoc(null, DocumentAnimationType.Destruction);
         GenerateDocument();
     }
 
@@ -192,7 +217,12 @@ public class InGameManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator InGameTimer()
     {
-        yield return new WaitForSeconds(_timeLimit);
+        _gameStartTime = Time.time;
+        for (int i = 0; i < _timeLimit; i++)
+        {
+            yield return new WaitForSeconds(1);
+            NowTime = Time.time - _gameStartTime;
+        }
 
         EndingType type;
         if (_totalScore < _score + _badLimit)
@@ -211,6 +241,8 @@ public class InGameManager : MonoBehaviour
         InputDispatcher.Interface.DisableInput();
         InputRegistration(false);
         GameManager.Instance.SaveResult(_totalScore, type, default);
+        SoundManager.PlaySE(SEType.InGameEnd);
+        yield return _inGameTextAnimator.End().ToCoroutine();
         GameManager.Instance.LoadResultScene();
     }
 }

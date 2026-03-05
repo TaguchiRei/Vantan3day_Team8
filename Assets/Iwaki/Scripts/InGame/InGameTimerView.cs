@@ -1,14 +1,15 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameTimerView : MonoBehaviour
 {
     [SerializeField] private InGameManager _inGameManager;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Image _image;
 
     private float _currentTime;
-    
+
     private void Start()
     {
         _currentTime = _inGameManager.TimeLimit;
@@ -17,6 +18,7 @@ public class InGameTimerView : MonoBehaviour
     private void Update()
     {
         _currentTime -= Time.deltaTime;
-        _text.text = TimeSpan.FromSeconds(_currentTime).ToString(@"mm\:ss");
+
+        _image.fillAmount = _currentTime / _inGameManager.TimeLimit;
     }
 }
