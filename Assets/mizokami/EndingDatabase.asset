@@ -32,7 +32,7 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 59aa57b6a86ca6b4880e2b8b7509739f, type: 3}
     EndingTexts:
     - Type: 0
-      Text: "\u30DF\u30E5\u30A6\uFF01\u305D\u3093\u306A\u9854\u3057\u306A\u3044\u3067\u304F\u308C\uFF01\u4FFA\u304C\u597D\u304D\u306A\u306E\u306F\u304A\u524D\u3060\u3051\u3060\uFF01"
+      Text: "\u3048\u3047\u2026\u50D5\u306E\u7D50\u5A5A\u76F8\u624B\u4E0A\u53F8\u304B\u3088\uFF01\uFF1F"
   - Type: 4
     Sprite: {fileID: 21300000, guid: f99b206b534e6574f9311b941f0b410d, type: 3}
     EndingTexts:
