@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NPCPhotoDatabase
   m_EditorClassIdentifier: Assembly-CSharp::NPCPhotoDatabase
   faceSprites:
-  - {fileID: 21300000, guid: c1855683bcc930a4588989c8dde3b655, type: 3}
-  - {fileID: 21300000, guid: a711b91b3eaffb74ba849f6728f4c252, type: 3}
-  - {fileID: 21300000, guid: 59aa57b6a86ca6b4880e2b8b7509739f, type: 3}
+  - {fileID: 3305410774217181623, guid: a3975964b94d6da4f88974cdc8859126, type: 3}
+  - {fileID: -8500224799610132099, guid: 5b1c9f3f8683b4a4993c4526cc67a21b, type: 3}
+  - {fileID: -8582739891829834506, guid: c05094604627d9f4e98fc8656c81806f, type: 3}
   hairSprites:
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: a4a41ff3c2d45064e9927a617b891eee, type: 3}
+  - {fileID: 21300000, guid: ef3a688563ebbde46bfb2b2cdde6c070, type: 3}
+  - {fileID: 21300000, guid: 4d675e1d8aa35654a82b5cf5743d85b4, type: 3}
