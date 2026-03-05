@@ -60,7 +60,10 @@ public class InGameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopCoroutine(_routine);
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
     }
 
     private void PlayStart()
