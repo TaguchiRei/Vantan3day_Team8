@@ -1249,7 +1249,7 @@ MonoBehaviour:
   _bonus: 50
   _bonusTime: 5
   _missScore: -50
-  _badLimit: 5
+  _badLimit: 10
   _startTime: 1.5
 --- !u!4 &1313887266
 Transform:
@@ -1340,7 +1340,7 @@ SpriteRenderer:
   m_Size: {x: 37.86, y: 22.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1745302861
 Transform:
