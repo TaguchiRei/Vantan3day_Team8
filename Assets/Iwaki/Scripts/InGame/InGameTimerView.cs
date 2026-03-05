@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +14,18 @@ public class InGameTimerView : MonoBehaviour
     private void Start()
     {
         _currentTime = _inGameManager.TimeLimit;
+        _inGameManager.OnStart += () => StartCoroutine(BeginTimer());
     }
 
-    private void Update()
+    private IEnumerator BeginTimer()
     {
-        _currentTime -= Time.deltaTime;
+        while (_currentTime > 0)
+        {
+            _currentTime -= Time.deltaTime;
 
-        _image.fillAmount = _currentTime / _inGameManager.TimeLimit;
+            _image.fillAmount = _currentTime / _inGameManager.TimeLimit;
+
+            yield return null;
+        }
     }
 }
