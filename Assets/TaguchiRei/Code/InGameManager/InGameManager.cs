@@ -39,6 +39,7 @@ public class InGameManager : MonoBehaviour
     private float _gameStartTime;
 
     public event Action<int> OnScoreChanged;
+    public event Action OnStart;
     public int TimeLimit => _timeLimit;
 
     private IEnumerator Start()
@@ -49,6 +50,7 @@ public class InGameManager : MonoBehaviour
         SoundManager.PlaySE(SEType.InGameCountDown);
         yield return _inGameTextAnimator.Begin().ToCoroutine();
         SoundManager.PlaySE(SEType.InGameBegin);
+        OnStart?.Invoke();
         _startObject.Animator.SetTrigger("Start");
         _routine = StartCoroutine(InGameTimer());
     }
